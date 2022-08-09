@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spice/controllers/product_controller.dart';
 import 'package:spice/screens/tabScreen.dart';
 
 class MyTabController extends GetxController with SingleGetTickerProviderMixin {
   late TabController controller;
+  ProductController productController = Get.put(ProductController());
 
-  final List<Tab> myTabs = <Tab>[
-    Tab(
-      text: "Disznósajt",
-    ),
-    Tab(
-      text: "Hurka",
-    ),
-    Tab(
-      text: "Sütőkolbász (Csemege)",
-    ),
-  ];
+  List<Tab> _getProductName() {
+    List<Tab> names = [];
+    for (var product in productController.product.values) {
+      names.add(Tab(
+        text: product.name,
+      ));
+    }
+    return names;
+  }
 
-  List<Widget> tabContent = [
-    ScreenOne(),
-    ScreenOne(),
-    ScreenOne(),
-  ];
+  List<Tab> myTabs = [];
+
+  List<Widget> tabContent = [];
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    controller = TabController(length: 3, vsync: this);
+    myTabs = _getProductName();
+    for (var i = 0; i < myTabs.length; i++) {
+      tabContent.add(ScreenOne());
+    }
+    controller = TabController(length: myTabs.length, vsync: this);
   }
 
   @override

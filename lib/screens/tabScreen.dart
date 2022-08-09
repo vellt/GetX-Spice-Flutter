@@ -11,19 +11,9 @@ class ScreenOne extends StatelessWidget {
     return Container(
       color: color.background,
       child: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            CupertinoIcons.tray_fill,
-            size: 60.sp,
-            color: color.subText,
-          ),
-          Text(
-            "Nincs fűszer",
-            style: TextStyle(color: color.subText, fontSize: 10.sp),
-          )
-        ],
+          child: Text(
+        "Nincs fűszer",
+        style: TextStyle(color: color.subText, fontSize: 10.sp),
       )),
     );
   }

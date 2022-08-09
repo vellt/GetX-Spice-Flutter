@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
+import 'package:spice/controllers/product_controller.dart';
+import 'package:spice/controllers/temp_spice_controller.dart';
+import 'package:spice/models/product.dart';
+import 'package:spice/screens/spice_add_screen.dart';
 import 'package:spice/widgets/button_widget.dart';
 import '../global.dart';
 
 class ProductsEditScreen extends StatelessWidget {
-  const ProductsEditScreen({Key? key, required this.name}) : super(key: key);
-  final name;
+  ProductsEditScreen(
+      {Key? key, required this.product, required this.controller})
+      : super(key: key) {
+    productNameController.text = product.name;
+    productQuantityController.text = product.quantity.toString();
+  }
+  final Product product;
+  TextEditingController productNameController = TextEditingController();
+  TextEditingController productQuantityController = TextEditingController();
+  TempSpiceController tempSpiceController = Get.put(TempSpiceController());
+  final ProductController controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +34,9 @@ class ProductsEditScreen extends StatelessWidget {
             size: 20.sp,
             color: color.mainText,
           ),
-          onPressed: () => Get.back(),
+          onPressed: () {
+            Get.back();
+          },
         ),
         actions: [
           Padding(
@@ -32,7 +47,11 @@ class ProductsEditScreen extends StatelessWidget {
                 size: 20.sp,
                 color: color.red,
               ),
-              onPressed: () => Get.back(),
+              onPressed: () {
+                print("key: ${product.key}");
+                controller.deleteProduct(key: product.key);
+                Get.back();
+              },
             ),
           ),
         ],
@@ -44,7 +63,7 @@ class ProductsEditScreen extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: Text(
                 "Termék szerkesztése",
-                style: TextStyle(fontSize: 22.sp),
+                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -54,42 +73,172 @@ class ProductsEditScreen extends StatelessWidget {
         padding: EdgeInsets.only(top: 12.sp),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 10.sp),
-          child: TextFormField(
-            autofocus: true,
-            initialValue: name,
-            cursorColor: color.mainText,
-            style: TextStyle(fontSize: 16.sp),
-            textAlignVertical: TextAlignVertical.bottom,
-            keyboardType: TextInputType.text,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'This field is required';
-              }
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                controller: productNameController,
+                autofocus: true,
+                cursorColor: color.mainText,
+                style: TextStyle(fontSize: 16.sp),
+                textAlignVertical: TextAlignVertical.bottom,
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'This field is required';
+                  }
 
-              if (double.parse(value).isNaN) {
-                return 'Invalid number';
-              }
-              return null;
-            },
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(
-                  left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-              labelStyle: TextStyle(color: color.inputBorder),
-              labelText: 'Megnevezés',
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide(color: color.inputBorder, width: 1.5.sp),
+                  if (double.parse(value).isNaN) {
+                    return 'Invalid number';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(
+                      left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
+                  labelStyle: TextStyle(color: color.inputBorder),
+                  labelText: 'Megnevezés',
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide:
+                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide:
+                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                  ),
+                ),
               ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide(color: color.inputBorder, width: 1.5.sp),
+              SizedBox(
+                height: 20.sp,
               ),
-            ),
+              TextFormField(
+                controller: productQuantityController,
+                autofocus: true,
+                cursorColor: color.mainText,
+                style: TextStyle(fontSize: 16.sp),
+                textAlignVertical: TextAlignVertical.bottom,
+                keyboardType: TextInputType.numberWithOptions(),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'This field is required';
+                  }
+
+                  if (double.parse(value).isNaN) {
+                    return 'Invalid number';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(
+                      left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
+                  labelStyle: TextStyle(color: color.inputBorder),
+                  labelText: 'Súly',
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide:
+                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(
+                        color: color.inputBorder,
+                        width:
+                            1.5.sp), //todo: mas legyen a szine mikor nem aktiv
+                  ),
+                  suffixIcon: Container(
+                    height: 20.sp,
+                    width: 40.sp,
+                    child: Center(
+                      child: Text(
+                        "Kg",
+                        style: TextStyle(
+                            color: color.inputBorder, fontSize: 12.sp),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 22.sp,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "fűszerei",
+                    style:
+                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    width: 10.sp,
+                  ),
+                  SizedBox(
+                    height: 20.sp,
+                    width: 45.sp,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: color.mainButton,
+                          shadowColor: Colors.transparent),
+                      onPressed: () {
+                        //todo: átkéne adni a kövi page-nek 'tempSpiceController'
+                      },
+                      child: Icon(
+                        Icons.add,
+                        size: 15.sp,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: GetBuilder<TempSpiceController>(builder: (cont) {
+                  if (cont.spices.length == 0) {
+                    return Center(
+                        child: Text(
+                      "Nincs fűszer",
+                      style:
+                          TextStyle(color: color.inputBorder, fontSize: 10.sp),
+                    ));
+                  } else {
+                    return ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: cont.spices.length,
+                        itemBuilder: (context, index) {
+                          Product product = cont.spices.getAt(index);
+                          return ButtonWidget(
+                            function: () {},
+                            title: SizedBox(
+                              height: 25.sp,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(product.name,
+                                    style: TextStyle(
+                                      color: color.secondText,
+                                      fontSize: 15.sp,
+                                    )),
+                              ),
+                            ),
+                          );
+                        });
+                  }
+                }),
+              )
+            ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.updateProduct(
+              key: product.key,
+              product: Product(
+                name: productNameController.text,
+                quantity: product.quantity,
+                spices: product.spices,
+              ));
+          Get.back();
+        },
         child: Icon(
           Icons.check,
           color: color.mainText,

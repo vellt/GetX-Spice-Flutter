@@ -10,17 +10,20 @@ class ButtonWidget extends StatelessWidget {
     this.subtitle,
     this.trailing,
     required this.function,
+    this.hasPadding,
   }) : super(key: key);
   final leading;
   final title;
   final subtitle;
   final trailing;
   final void Function() function;
+  final hasPadding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 12.sp),
+      padding: EdgeInsets.symmetric(
+          vertical: 5.sp, horizontal: (hasPadding == null) ? 12.sp : 0.sp),
       child: ElevatedButton(
         onPressed: function,
         child: Padding(

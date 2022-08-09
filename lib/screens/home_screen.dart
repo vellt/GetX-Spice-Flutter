@@ -69,8 +69,8 @@ class HomeScreen extends StatelessWidget {
             ButtonWidget(
               function: () {
                 Get.to(
-                  CalculatingScreen(),
-                  transition: Transition.rightToLeft,
+                  () => CalculatingScreen(),
+                  transition: Transition.cupertino,
                 );
               },
               leading: Icon(
@@ -94,8 +94,8 @@ class HomeScreen extends StatelessWidget {
             ButtonWidget(
               function: () {
                 Get.to(
-                  ProductsViewScreen(),
-                  transition: Transition.rightToLeft,
+                  () => ProductsViewScreen(),
+                  transition: Transition.cupertino,
                 );
               },
               leading: Icon(
