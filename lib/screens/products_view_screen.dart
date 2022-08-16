@@ -10,7 +10,7 @@ import 'package:spice/widgets/button_widget.dart';
 import '../global.dart';
 
 class ProductsViewScreen extends StatelessWidget {
-  ProductsViewScreen({Key? key}) : super(key: key);
+  ProductsViewScreen({Key? key}) : super(key: key) {}
   ProductController productController = Get.put(ProductController());
 
   @override

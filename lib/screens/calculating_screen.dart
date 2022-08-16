@@ -72,11 +72,22 @@ class CalculatingScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: 10.sp, vertical: 10.sp),
                     child: TextFormField(
+                      initialValue: (quantity.quantity.toString() != "0.0")
+                          ? quantity.quantity.toString()
+                          : null,
                       autofocus: true,
                       cursorColor: color.mainText,
                       style: TextStyle(fontSize: 16.sp),
                       textAlignVertical: TextAlignVertical.bottom,
                       keyboardType: TextInputType.numberWithOptions(),
+                      onChanged: (value) {
+                        print(value);
+                        if (double.tryParse(value) != null) {
+                          quantity.change(value: double.parse(value));
+                        } else {
+                          quantity.change(value: double.parse("0.0"));
+                        }
+                      },
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'This field is required';

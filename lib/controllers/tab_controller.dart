@@ -27,7 +27,9 @@ class MyTabController extends GetxController with SingleGetTickerProviderMixin {
     super.onInit();
     myTabs = _getProductName();
     for (var i = 0; i < myTabs.length; i++) {
-      tabContent.add(ScreenOne());
+      tabContent.add(TabScreen(
+        product: productController.product.getAt(i),
+      ));
     }
     controller = TabController(length: myTabs.length, vsync: this);
   }

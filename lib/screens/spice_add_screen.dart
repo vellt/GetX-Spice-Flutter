@@ -7,10 +7,10 @@ import 'package:spice/models/product.dart';
 import '../global.dart';
 
 class SpiceAddScreen extends StatelessWidget {
-  SpiceAddScreen({Key? key, required this.controller}) : super(key: key) {}
+  SpiceAddScreen({Key? key}) : super(key: key) {}
   TextEditingController spiceNameController = TextEditingController();
   TextEditingController spiceQuantityController = TextEditingController();
-  final TempSpiceController controller;
+  TempSpiceController controller = Get.put(TempSpiceController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -174,7 +174,7 @@ class SpiceAddScreen extends StatelessWidget {
               name: spiceNameController.text,
               quantity: quantity,
               components: []);
-          Get.back();
+          Get.back(result: controller);
         },
         child: Icon(
           Icons.check,

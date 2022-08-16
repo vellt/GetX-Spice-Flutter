@@ -157,9 +157,9 @@ class ProductsAddScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           primary: color.mainButton,
                           shadowColor: Colors.transparent),
-                      onPressed: () {
+                      onPressed: () async {
                         //todo: átkéne adni a kövi page-nek 'tempSpiceController'
-                        Get.to(SpiceAddScreen(controller: tempSpiceController),
+                        tempSpiceController = await Get.to(SpiceAddScreen(),
                             transition: Transition.cupertino);
                       },
                       child: Icon(
@@ -223,12 +223,19 @@ class ProductsAddScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print("termeknev: ${productNameController.text}");
+          print(tempSpiceController.spices.length);
+          print(tempSpiceController.spices[0].quantity);
+          print(tempSpiceController.spices[0].key);
+          print(tempSpiceController.spices[0].name);
+          print(tempSpiceController.spices[0].components.length);
+
           controller.createProduct(
-              product: Product(
-            name: productNameController.text,
-            quantity: 0,
-            spices: [],
-          ));
+            product: Product(
+              name: productNameController.text,
+              quantity: double.parse(productQuantityController.text), //a vessz
+              spices: tempSpiceController.spices,
+            ),
+          );
 
           Get.back();
         },

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:spice/controllers/product_controller.dart';
 import 'package:spice/controllers/temp_spice_controller.dart';
 import 'package:spice/models/product.dart';
+import 'package:spice/models/spice.dart';
 import 'package:spice/screens/spice_add_screen.dart';
 import 'package:spice/widgets/button_widget.dart';
 import '../global.dart';
@@ -14,6 +15,8 @@ class ProductsEditScreen extends StatelessWidget {
       : super(key: key) {
     productNameController.text = product.name;
     productQuantityController.text = product.quantity.toString();
+    tempSpiceController.spices = product.spices;
+    print(product.spices.length);
   }
   final Product product;
   TextEditingController productNameController = TextEditingController();
@@ -191,6 +194,9 @@ class ProductsEditScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10.sp,
+              ),
               Expanded(
                 child: GetBuilder<TempSpiceController>(builder: (cont) {
                   if (cont.spices.length == 0) {
@@ -205,14 +211,24 @@ class ProductsEditScreen extends StatelessWidget {
                         physics: BouncingScrollPhysics(),
                         itemCount: cont.spices.length,
                         itemBuilder: (context, index) {
-                          Product product = cont.spices.getAt(index);
+                          Spice spice = cont.spices[index];
                           return ButtonWidget(
+                            hasPadding: true,
                             function: () {},
+                            trailing: Padding(
+                                padding: EdgeInsets.only(right: 10.sp),
+                                child: Text(
+                                  spice.quantity.toString(),
+                                  style: TextStyle(
+                                    color: color.secondText,
+                                    fontSize: 15.sp,
+                                  ),
+                                )),
                             title: SizedBox(
                               height: 25.sp,
                               child: Align(
                                 alignment: Alignment.centerLeft,
-                                child: Text(product.name,
+                                child: Text(spice.name,
                                     style: TextStyle(
                                       color: color.secondText,
                                       fontSize: 15.sp,
@@ -223,7 +239,7 @@ class ProductsEditScreen extends StatelessWidget {
                         });
                   }
                 }),
-              )
+              ),
             ],
           ),
         ),

@@ -4,8 +4,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:spice/models/spice.dart';
 import 'package:spice/screens/home_screen.dart';
 
+import 'controllers/quantity_controller.dart';
 import 'global.dart';
 import 'models/product.dart';
 
@@ -15,9 +17,11 @@ void main() async {
   await Hive.initFlutter(); //hivedb
   //for adapter generating: flutter packages pub run build_runner build
   Hive.registerAdapter(ProductAdapter()); //hive (after generate adapter)
+  Hive.registerAdapter(SpiceAdapter()); //hive (after generate adapter)
   await Hive.openBox<Product>('products'); //hive (after generate adapter)
   //await Hive.box<Product>('products').clear();
   //await Hive.deleteFromDisk();
+  quantity.onInit();
   runApp(MyApp());
 }
 
