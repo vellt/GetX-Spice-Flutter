@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:spice/screens/products_view_screen.dart';
-import 'package:spice/screens/calculating_screen.dart';
+import 'package:spice/controllers/product_controller.dart';
+import 'package:spice/screens/products/products_view_screen.dart';
+import 'package:spice/screens/calculating/calculating_screen.dart';
 import 'package:spice/widgets/button_widget.dart';
 
 import '../global.dart';
+import 'data/data_view_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  ProductController productController = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -94,7 +97,7 @@ class HomeScreen extends StatelessWidget {
             ButtonWidget(
               function: () {
                 Get.to(
-                  () => ProductsViewScreen(),
+                  () => ProductsViewScreen(controller: productController),
                   transition: Transition.cupertino,
                 );
               },
@@ -117,40 +120,28 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             ButtonWidget(
-              function: () {},
+              function: () {
+                Get.to(
+                  () => DataViewScreen(),
+                  transition: Transition.cupertino,
+                );
+              },
               leading: Icon(
                 Icons.save,
                 color: color.secondText,
                 size: 20.sp,
               ),
               title: Text(
-                "Mentés készítése",
+                "Mentés készítése és visszaállítása",
                 style: TextStyle(
                   color: color.secondText,
                   fontSize: 15.sp,
                 ),
               ),
-              subtitle: Text(
-                "Legutolsó mentés dátuma: 2022-04-02",
-                style: TextStyle(
-                  color: color.secondText,
-                  fontSize: 10.sp,
-                ),
-              ),
-            ),
-            ButtonWidget(
-              function: () {},
-              leading: Icon(
-                Icons.restore_outlined,
-                color: color.secondText,
-                size: 20.sp,
-              ),
-              title: Text(
-                "Régebbi mentés visszaállítása",
-                style: TextStyle(
-                  color: color.secondText,
-                  fontSize: 15.sp,
-                ),
+              trailing: Icon(
+                Icons.navigate_next,
+                color: color.subText,
+                size: 25.sp,
               ),
             ),
             Expanded(
@@ -159,7 +150,7 @@ class HomeScreen extends StatelessWidget {
               child: TextButton(
                 child: Text(
                   "GitHub/vellt",
-                  style: TextStyle(fontSize: 12.sp, color: color.secondText),
+                  style: TextStyle(fontSize: 11.sp, color: color.secondText),
                 ),
                 onPressed: () {},
               ),

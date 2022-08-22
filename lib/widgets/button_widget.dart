@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../global.dart';
@@ -29,25 +30,27 @@ class ButtonWidget extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 12.sp),
           child: Row(
+            mainAxisSize: MainAxisSize.max,
             children: [
               if (leading != null) leading,
               if (leading != null) SizedBox(width: 15.sp),
               if (title != null)
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (title != null) title,
-                    if (subtitle != null) SizedBox(height: 5.sp),
-                    if (subtitle != null) subtitle
-                  ],
+                Flexible(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      if (title != null) title,
+                      if (subtitle != null) SizedBox(height: 5.sp),
+                      if (subtitle != null) subtitle
+                    ],
+                  ),
                 ),
               if (trailing != null)
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: trailing,
-                  ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: trailing,
                 ),
             ],
           ),

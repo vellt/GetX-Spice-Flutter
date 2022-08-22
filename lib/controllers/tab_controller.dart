@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spice/controllers/product_controller.dart';
-import 'package:spice/screens/tabScreen.dart';
+import 'package:spice/screens/calculating/tabScreen.dart';
 
 class MyTabController extends GetxController with SingleGetTickerProviderMixin {
   late TabController controller;

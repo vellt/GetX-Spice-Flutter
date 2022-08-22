@@ -11,6 +11,8 @@ import 'controllers/quantity_controller.dart';
 import 'global.dart';
 import 'models/product.dart';
 
+//https://github.com/hivedb/hive/issues/629
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //hivedb
   await GetStorage.init(); //getstoreg
@@ -20,6 +22,7 @@ void main() async {
   Hive.registerAdapter(SpiceAdapter()); //hive (after generate adapter)
   await Hive.openBox<Product>('products'); //hive (after generate adapter)
   //await Hive.box<Product>('products').clear();
+  print(Hive.box<Product>('products').path);
   //await Hive.deleteFromDisk();
   quantity.onInit();
   runApp(MyApp());

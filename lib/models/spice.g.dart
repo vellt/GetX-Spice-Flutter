@@ -17,9 +17,9 @@ class SpiceAdapter extends TypeAdapter<Spice> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Spice(
-      name: fields[0] as String,
-      quantity: fields[1] as double,
-      components: (fields[2] as List).cast<Component>(),
+      id: fields[0] as String,
+      name: fields[1] as String,
+      quantity: fields[2] as double,
     );
   }
 
@@ -28,11 +28,11 @@ class SpiceAdapter extends TypeAdapter<Spice> {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.quantity)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.components);
+      ..write(obj.quantity);
   }
 
   @override

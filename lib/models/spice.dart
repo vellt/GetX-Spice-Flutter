@@ -1,4 +1,3 @@
-import 'component.dart';
 import 'package:hive/hive.dart';
 
 part 'spice.g.dart';
@@ -6,14 +5,14 @@ part 'spice.g.dart';
 @HiveType(typeId: 1)
 class Spice extends HiveObject {
   @HiveField(0)
-  String name;
+  String id;
   @HiveField(1)
-  double quantity;
+  String name;
   @HiveField(2)
-  List<Component> components;
+  double quantity;
   Spice({
+    required this.id,
     required this.name,
     required this.quantity,
-    required this.components,
   });
 }
