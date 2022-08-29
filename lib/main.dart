@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
 import 'package:spice/models/spice.dart';
-import 'package:spice/screens/home_screen.dart';
+import 'package:spice/screens/home/home_screen.dart';
 
 import 'controllers/quantity_controller.dart';
 import 'global.dart';

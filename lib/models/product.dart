@@ -11,9 +11,12 @@ class Product extends HiveObject {
   final double quantity; //default 0
   @HiveField(2)
   final List<Spice> spices;
+  @HiveField(3)
+  final bool isFavorite;
   Product({
     required this.name,
     required this.quantity,
     required this.spices,
+    required this.isFavorite,
   });
 }

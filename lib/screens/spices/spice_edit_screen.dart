@@ -91,17 +91,17 @@ class SpiceEditScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
                       left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-                  labelStyle: TextStyle(color: color.inputBorder),
+                  labelStyle: TextStyle(color: color.subText),
                   labelText: 'Megnevezés',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                 ),
               ),
@@ -128,17 +128,17 @@ class SpiceEditScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
                       left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-                  labelStyle: TextStyle(color: color.inputBorder),
+                  labelStyle: TextStyle(color: color.subText),
                   labelText: 'Súly',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(
-                        color: color.inputBorder,
+                        color: color.subArrow,
                         width:
                             1.5.sp), //todo: mas legyen a szine mikor nem aktiv
                   ),
@@ -148,8 +148,7 @@ class SpiceEditScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         "Kg",
-                        style: TextStyle(
-                            color: color.inputBorder, fontSize: 12.sp),
+                        style: TextStyle(color: color.subText, fontSize: 12.sp),
                       ),
                     ),
                   ),
@@ -173,7 +172,7 @@ class SpiceEditScreen extends StatelessWidget {
           Icons.check,
           color: color.mainText,
         ),
-        backgroundColor: color.mainButton,
+        backgroundColor: color.flatButton,
       ),
     );
   }

@@ -1,10 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spice/controllers/product_controller.dart';
 import 'package:spice/controllers/tab_controller.dart';
 import 'package:sizer/sizer.dart';
-import 'package:spice/screens/products/products_add_screen.dart';
 import '../../global.dart';
 
 class CalculatingScreen extends StatelessWidget {
@@ -31,7 +28,7 @@ class CalculatingScreen extends StatelessWidget {
           color: color.background,
           child: Center(
               child: Text("Nincs termék",
-                  style: TextStyle(color: color.inputBorder, fontSize: 10.sp))),
+                  style: TextStyle(color: color.subText, fontSize: 10.sp))),
         ),
       );
     } else
@@ -107,17 +104,17 @@ class CalculatingScreen extends StatelessWidget {
                             right: 10.sp,
                             top: 18.sp,
                             bottom: 12.sp),
-                        labelStyle: TextStyle(color: color.inputBorder),
+                        labelStyle: TextStyle(color: color.subText),
                         labelText: 'Súly',
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                              color: color.inputBorder, width: 1.5.sp),
+                          borderSide:
+                              BorderSide(color: color.subArrow, width: 1.5.sp),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide(
-                              color: color.inputBorder,
+                              color: color.subArrow,
                               width: 1.5
                                   .sp), //todo: mas legyen a szine mikor nem aktiv
                         ),
@@ -128,7 +125,7 @@ class CalculatingScreen extends StatelessWidget {
                             child: Text(
                               "Kg",
                               style: TextStyle(
-                                  color: color.inputBorder, fontSize: 12.sp),
+                                  color: color.subText, fontSize: 12.sp),
                             ),
                           ),
                         ),
@@ -153,7 +150,7 @@ class CalculatingScreen extends StatelessWidget {
             Icons.add,
             color: color.mainText,
           ),
-          backgroundColor: color.mainButton,
+          backgroundColor: color.blue,
         ),
       );
   }

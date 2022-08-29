@@ -20,19 +20,22 @@ class ProductAdapter extends TypeAdapter<Product> {
       name: fields[0] as String,
       quantity: fields[1] as double,
       spices: (fields[2] as List).cast<Spice>(),
+      isFavorite: fields[3] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Product obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.quantity)
       ..writeByte(2)
-      ..write(obj.spices);
+      ..write(obj.spices)
+      ..writeByte(3)
+      ..write(obj.isFavorite);
   }
 
   @override

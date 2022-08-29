@@ -101,17 +101,17 @@ class ProductsEditScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
                       left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-                  labelStyle: TextStyle(color: color.inputBorder),
+                  labelStyle: TextStyle(color: color.subText),
                   labelText: 'Megnevezés',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                 ),
               ),
@@ -138,17 +138,17 @@ class ProductsEditScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
                       left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-                  labelStyle: TextStyle(color: color.inputBorder),
+                  labelStyle: TextStyle(color: color.subText),
                   labelText: 'Súly',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(
-                        color: color.inputBorder,
+                        color: color.subArrow,
                         width:
                             1.5.sp), //todo: mas legyen a szine mikor nem aktiv
                   ),
@@ -158,8 +158,7 @@ class ProductsEditScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         "Kg",
-                        style: TextStyle(
-                            color: color.inputBorder, fontSize: 12.sp),
+                        style: TextStyle(color: color.subText, fontSize: 12.sp),
                       ),
                     ),
                   ),
@@ -183,7 +182,7 @@ class ProductsEditScreen extends StatelessWidget {
                     width: 45.sp,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: color.mainButton,
+                          primary: color.flatButton,
                           shadowColor: Colors.transparent),
                       onPressed: () async {
                         //todo: átkéne adni a kövi page-nek 'tempSpiceController'
@@ -207,8 +206,7 @@ class ProductsEditScreen extends StatelessWidget {
                     return Center(
                         child: Text(
                       "Nincs fűszer",
-                      style:
-                          TextStyle(color: color.inputBorder, fontSize: 10.sp),
+                      style: TextStyle(color: color.subText, fontSize: 10.sp),
                     ));
                   } else {
                     return ListView.builder(
@@ -269,6 +267,7 @@ class ProductsEditScreen extends StatelessWidget {
                 name: productNameController.text,
                 quantity: product.quantity,
                 spices: tempSpiceController.spices,
+                isFavorite: false,
               ));
           Get.back();
         },
@@ -276,7 +275,7 @@ class ProductsEditScreen extends StatelessWidget {
           Icons.check,
           color: color.mainText,
         ),
-        backgroundColor: color.mainButton,
+        backgroundColor: color.flatButton,
       ),
     );
   }

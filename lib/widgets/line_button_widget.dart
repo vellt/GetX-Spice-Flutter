@@ -1,34 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../global.dart';
 
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({
+class LineButtonWidget extends StatelessWidget {
+  const LineButtonWidget({
     Key? key,
     this.leading,
     this.title,
     this.subtitle,
     this.trailing,
+    required this.background,
     required this.function,
-    this.hasPadding,
   }) : super(key: key);
   final leading;
   final title;
   final subtitle;
   final trailing;
+  final Color background;
   final void Function() function;
-  final hasPadding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          vertical: 5.sp, horizontal: (hasPadding == null) ? 12.sp : 0.sp),
+        vertical: 5.sp,
+      ),
       child: ElevatedButton(
         onPressed: function,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.sp),
+          padding: EdgeInsets.symmetric(vertical: 9.5.sp),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -56,8 +56,14 @@ class ButtonWidget extends StatelessWidget {
           ),
         ),
         style: ElevatedButton.styleFrom(
-            primary: color.flatButton, shadowColor: Colors.transparent),
+            primary: background,
+            shadowColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(6.sp), // <-- Radius
+            )),
       ),
     );
   }
 }
+//ElevatedButton.styleFrom(
+//            primary: color.flatButton, shadowColor: Colors.transparent)

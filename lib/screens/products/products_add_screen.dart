@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,11 @@ import 'package:spice/models/product.dart';
 import 'package:spice/models/spice.dart';
 import 'package:spice/screens/spices/spice_add_screen.dart';
 import 'package:spice/screens/spices/spice_edit_screen.dart';
-import 'package:spice/widgets/button_widget.dart';
+import 'package:spice/widgets/line_button_widget.dart';
+import 'package:spice/widgets/line_widget.dart';
+import 'package:spice/widgets/main_text_widget.dart';
+import 'package:spice/widgets/second_text_widget.dart';
+import 'package:spice/widgets/sub_text_widget.dart';
 import '../../global.dart';
 
 class ProductsAddScreen extends StatelessWidget {
@@ -39,18 +44,19 @@ class ProductsAddScreen extends StatelessWidget {
           preferredSize: Size.fromHeight(25.sp),
           child: Padding(
             padding: EdgeInsets.only(left: 15.sp),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                "Termék hozzáadása",
-                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
-              ),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: MainTextWidget("Termékek hozzáadása"),
+                ),
+              ],
             ),
           ),
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 12.sp),
+        padding: EdgeInsets.only(top: 3.sp),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 10.sp),
           child: Column(
@@ -76,17 +82,17 @@ class ProductsAddScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
                       left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-                  labelStyle: TextStyle(color: color.inputBorder),
+                  labelStyle: TextStyle(color: color.subText),
                   labelText: 'Megnevezés',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                 ),
               ),
@@ -113,17 +119,17 @@ class ProductsAddScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
                       left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-                  labelStyle: TextStyle(color: color.inputBorder),
+                  labelStyle: TextStyle(color: color.subText),
                   labelText: 'Súly',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide:
-                        BorderSide(color: color.inputBorder, width: 1.5.sp),
+                        BorderSide(color: color.subArrow, width: 1.5.sp),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide(
-                        color: color.inputBorder,
+                        color: color.subArrow,
                         width:
                             1.5.sp), //todo: mas legyen a szine mikor nem aktiv
                   ),
@@ -133,48 +139,53 @@ class ProductsAddScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         "Kg",
-                        style: TextStyle(
-                            color: color.inputBorder, fontSize: 12.sp),
+                        style: TextStyle(color: color.subText, fontSize: 12.sp),
                       ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: 22.sp,
-              ),
-              Row(
-                children: [
-                  Text(
-                    "fűszerei",
-                    style:
-                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+              SizedBox(height: 5.sp),
+              LineWidget(),
+              SizedBox(height: 5.sp),
+              SecondTextWidget("Fűszerei"),
+              SizedBox(height: 5.sp),
+              SubTextWidget(
+                  "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából"),
+              SizedBox(height: 5.sp),
+              LineButtonWidget(
+                background: color.blue,
+                function: () async {
+                  //todo: átkéne adni a kövi page-nek 'tempSpiceController'
+                  tempSpiceController = await Get.to(SpiceAddScreen(),
+                      transition: Transition.cupertino);
+                },
+                leading: Padding(
+                  padding: EdgeInsets.only(left: 4.sp),
+                  child: Icon(
+                    CupertinoIcons.add,
+                    color: color.mainText,
+                    size: 14.sp,
                   ),
-                  SizedBox(
-                    width: 10.sp,
-                  ),
-                  SizedBox(
-                    height: 20.sp,
-                    width: 45.sp,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: color.mainButton,
-                          shadowColor: Colors.transparent),
-                      onPressed: () async {
-                        //todo: átkéne adni a kövi page-nek 'tempSpiceController'
-                        tempSpiceController = await Get.to(SpiceAddScreen(),
-                            transition: Transition.cupertino);
-                      },
-                      child: Icon(
-                        Icons.add,
-                        size: 15.sp,
+                ),
+                title: SizedBox(
+                  height: 25.sp,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Fűszer hozzáadása",
+                      style: TextStyle(
+                        color: color.mainText,
+                        fontSize: 12.sp,
                       ),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 10.sp,
+                ),
+                trailing: Icon(
+                  Icons.navigate_next,
+                  color: color.mainArrow,
+                  size: 20.sp,
+                ),
               ),
               Expanded(
                 child: GetBuilder<TempSpiceController>(builder: (cont) {
@@ -182,8 +193,7 @@ class ProductsAddScreen extends StatelessWidget {
                     return Center(
                         child: Text(
                       "Nincs fűszer",
-                      style:
-                          TextStyle(color: color.inputBorder, fontSize: 10.sp),
+                      style: TextStyle(color: color.subText, fontSize: 10.sp),
                     ));
                   } else {
                     return ListView.builder(
@@ -191,8 +201,7 @@ class ProductsAddScreen extends StatelessWidget {
                         itemCount: cont.spices.length,
                         itemBuilder: (context, index) {
                           Spice spice = cont.spices[index];
-                          return ButtonWidget(
-                            hasPadding: true,
+                          return LineButtonWidget(
                             function: () async {
                               var result = await Get.to(
                                   SpiceEditScreen(
@@ -227,6 +236,7 @@ class ProductsAddScreen extends StatelessWidget {
                                     )),
                               ),
                             ),
+                            background: color.flatButton,
                           );
                         });
                   }
@@ -243,6 +253,7 @@ class ProductsAddScreen extends StatelessWidget {
               name: productNameController.text,
               quantity: double.parse(productQuantityController.text), //a vessz
               spices: tempSpiceController.spices,
+              isFavorite: false,
             ),
           );
 
@@ -252,7 +263,7 @@ class ProductsAddScreen extends StatelessWidget {
           Icons.check,
           color: color.mainText,
         ),
-        backgroundColor: color.mainButton,
+        backgroundColor: color.blue,
       ),
     );
   }

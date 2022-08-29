@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:sizer/sizer.dart';
-import 'package:spice/controllers/product_controller.dart';
 import 'package:spice/controllers/quantity_controller.dart';
 import 'package:spice/models/product.dart';
 import 'package:spice/models/spice.dart';
@@ -29,8 +28,7 @@ class TabScreen extends StatelessWidget {
                     return Center(
                         child: Text(
                       "Nincs fűszer",
-                      style:
-                          TextStyle(color: color.inputBorder, fontSize: 10.sp),
+                      style: TextStyle(color: color.subText, fontSize: 10.sp),
                     ));
                   } else {
                     return ListView.builder(

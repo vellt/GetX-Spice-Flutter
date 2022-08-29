@@ -6,12 +6,11 @@ import 'package:spice/controllers/data_controller.dart';
 import 'package:spice/widgets/line_button_widget.dart';
 import 'package:spice/widgets/line_widget.dart';
 import 'package:spice/widgets/main_text_widget.dart';
-import 'package:spice/widgets/second_text_widget.dart';
 import 'package:spice/widgets/sub_text_widget.dart';
 import '../../global.dart';
 
-class DataViewScreen extends StatelessWidget {
-  DataViewScreen({Key? key}) : super(key: key) {}
+class LanguageScreen extends StatelessWidget {
+  LanguageScreen({Key? key}) : super(key: key) {}
   DataController dataController = Get.put(DataController());
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class DataViewScreen extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.bottomLeft,
-                  child: MainTextWidget("Adatok kezelése"),
+                  child: MainTextWidget("Nyelv beállítása"),
                 ),
                 LineWidget(),
               ],
@@ -51,58 +50,18 @@ class DataViewScreen extends StatelessWidget {
           padding: EdgeInsets.only(top: 5.sp, right: 14.sp, left: 14.sp),
           child: Column(
             children: [
-              SecondTextWidget("Mentés visszaállítása"),
-              SizedBox(
-                height: 8.sp,
-              ),
               SubTextWidget(
                   "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából vagy a fájrendszerből az importálásra kattintva"),
               SizedBox(
                 height: 5.sp,
               ),
               LineButtonWidget(
-                background: color.flatButton,
-                function: () {},
-                leading: Padding(
-                  padding: EdgeInsets.only(left: 4.sp),
-                  child: Icon(
-                    CupertinoIcons.folder,
-                    color: color.mainText,
-                    size: 14.sp,
-                  ),
-                ),
-                title: SizedBox(
-                  height: 25.sp,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Tallózás a könyvtárból",
-                      style: TextStyle(
-                        color: color.mainText,
-                        fontSize: 12.sp,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              LineWidget(),
-              SizedBox(
-                height: 5.sp,
-              ),
-              SecondTextWidget("Mentés készítése"),
-              SizedBox(
-                height: 8.sp,
-              ),
-              SubTextWidget(
-                  "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából vagy a fájrendszerből"),
-              SizedBox(height: 5.sp),
-              LineButtonWidget(
                 background: color.blue,
                 function: () {},
                 leading: Padding(
                   padding: EdgeInsets.only(left: 4.sp),
                   child: Icon(
-                    CupertinoIcons.tray_arrow_down,
+                    CupertinoIcons.check_mark_circled,
                     color: color.mainText,
                     size: 14.sp,
                   ),
@@ -112,7 +71,7 @@ class DataViewScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Mentés készítése",
+                      "Magyar",
                       style: TextStyle(
                         color: color.mainText,
                         fontSize: 12.sp,
@@ -121,27 +80,13 @@ class DataViewScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 5.sp,
-              ),
-              LineWidget(),
-              SizedBox(
-                height: 5.sp,
-              ),
-              SecondTextWidget("Adatok törlése"),
-              SizedBox(
-                height: 8.sp,
-              ),
-              SubTextWidget(
-                  "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából vagy a fájrendszerből"),
-              SizedBox(height: 5.sp),
               LineButtonWidget(
                 background: color.flatButton,
                 function: () {},
                 leading: Padding(
                   padding: EdgeInsets.only(left: 4.sp),
                   child: Icon(
-                    CupertinoIcons.delete,
+                    CupertinoIcons.circle,
                     color: color.mainText,
                     size: 14.sp,
                   ),
@@ -151,7 +96,7 @@ class DataViewScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Adatok törlése",
+                      "English",
                       style: TextStyle(
                         color: color.mainText,
                         fontSize: 12.sp,
