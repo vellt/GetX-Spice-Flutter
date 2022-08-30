@@ -193,7 +193,10 @@ class HomeScreen extends StatelessWidget {
                                                     .indexOf(product);
                                                 Get.to(
                                                     CalculatingScreen(
-                                                        tabIndex: index),
+                                                      tabIndex: index,
+                                                      productController:
+                                                          productController,
+                                                    ),
                                                     transition:
                                                         Transition.cupertino);
                                               },
@@ -261,6 +264,7 @@ class HomeScreen extends StatelessWidget {
                       Get.to(
                         () => CalculatingScreen(
                           tabIndex: 0,
+                          productController: productController,
                         ),
                         transition: Transition.cupertino,
                       );

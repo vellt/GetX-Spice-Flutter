@@ -171,7 +171,7 @@ class ProductsEditScreen extends StatelessWidget {
                             trailing: Padding(
                                 padding: EdgeInsets.only(right: 10.sp),
                                 child: Text(
-                                  spice.quantity.toString(),
+                                  spice.quantity.toStringAsFixed(2),
                                   style: TextStyle(
                                     color: color.secondText,
                                     fontSize: 12.sp,

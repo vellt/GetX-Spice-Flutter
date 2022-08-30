@@ -8,10 +8,10 @@ import 'package:spice/controllers/quantity_controller.dart';
 import 'package:spice/models/product.dart';
 import 'package:spice/models/spice.dart';
 import 'package:spice/widgets/line_button_widget.dart';
-import '../../global.dart';
+import '../global.dart';
 
-class TabScreen extends StatelessWidget {
-  const TabScreen({Key? key, required this.product}) : super(key: key);
+class TabScreenWidget extends StatelessWidget {
+  const TabScreenWidget({Key? key, required this.product}) : super(key: key);
   final Product product;
 
   @override
