@@ -1,13 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 import 'package:spice/controllers/product_controller.dart';
-import 'package:spice/controllers/temp_spice_controller.dart';
+import 'package:spice/controllers/spice_controller.dart';
 import 'package:spice/models/product.dart';
 import 'package:spice/models/spice.dart';
 import 'package:spice/screens/spices/spice_add_screen.dart';
 import 'package:spice/screens/spices/spice_edit_screen.dart';
 import 'package:spice/widgets/button_widget.dart';
+import 'package:spice/widgets/input_field_widget.dart';
+import 'package:spice/widgets/line_button_widget.dart';
+import 'package:spice/widgets/line_widget.dart';
+import 'package:spice/widgets/second_text_widget.dart';
+import 'package:spice/widgets/sub_text_widget.dart';
 import '../../global.dart';
 
 class ProductsEditScreen extends StatelessWidget {
@@ -16,14 +22,19 @@ class ProductsEditScreen extends StatelessWidget {
       : super(key: key) {
     productNameController.text = product.name;
     productQuantityController.text = product.quantity.toString();
-    tempSpiceController.spices
-        .addAll(product.spices); //referencia nélküli adatátadás
+    //referencia nélküli adatátadás
+    tempSpiceController.spices.addAll(product.spices);
   }
   final Product product;
+
+  //inputs controller
   TextEditingController productNameController = TextEditingController();
   TextEditingController productQuantityController = TextEditingController();
-  TempSpiceController tempSpiceController = Get.put(TempSpiceController());
+
+  //getx controller
+  SpiceController tempSpiceController = Get.put(SpiceController());
   final ProductController controller;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +59,9 @@ class ProductsEditScreen extends StatelessWidget {
             padding: EdgeInsets.only(right: 5.sp),
             child: IconButton(
               icon: Icon(
-                Icons.delete,
-                size: 20.sp,
-                color: color.red,
+                CupertinoIcons.delete,
+                size: 16.sp,
+                color: color.mainText,
               ),
               onPressed: () {
                 print("key: ${product.key}");
@@ -77,131 +88,65 @@ class ProductsEditScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.only(top: 12.sp),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 10.sp),
+          padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 10.sp),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextFormField(
+              InputFieldWidget(
                 controller: productNameController,
-                autofocus: true,
-                cursorColor: color.mainText,
-                style: TextStyle(fontSize: 16.sp),
-                textAlignVertical: TextAlignVertical.bottom,
-                keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'This field is required';
-                  }
-
-                  if (double.parse(value).isNaN) {
-                    return 'Invalid number';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(
-                      left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-                  labelStyle: TextStyle(color: color.subText),
-                  labelText: 'Megnevezés',
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide:
-                        BorderSide(color: color.subArrow, width: 1.5.sp),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide:
-                        BorderSide(color: color.subArrow, width: 1.5.sp),
-                  ),
-                ),
+                autofocus: false,
+                labelText: "Megnevezés",
+                textInputType: TextInputType.text,
               ),
-              SizedBox(
-                height: 20.sp,
-              ),
-              TextFormField(
+              SizedBox(height: 20.sp),
+              InputFieldWidget(
                 controller: productQuantityController,
-                autofocus: true,
-                cursorColor: color.mainText,
-                style: TextStyle(fontSize: 16.sp),
-                textAlignVertical: TextAlignVertical.bottom,
-                keyboardType: TextInputType.numberWithOptions(),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'This field is required';
-                  }
-
-                  if (double.parse(value).isNaN) {
-                    return 'Invalid number';
-                  }
-                  return null;
+                autofocus: false,
+                labelText: "Súly",
+                textInputType: TextInputType.numberWithOptions(),
+                secondLabelText: "Kg",
+              ),
+              SizedBox(height: 5.sp),
+              LineWidget(),
+              SizedBox(height: 5.sp),
+              SecondTextWidget("Fűszerek"),
+              SizedBox(height: 5.sp),
+              SubTextWidget(
+                  "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából"),
+              SizedBox(height: 5.sp),
+              LineButtonWidget(
+                background: color.blue,
+                function: () async {
+                  //todo: átkéne adni a kövi page-nek 'tempSpiceController'
+                  Get.to(SpiceAddScreen(controller: tempSpiceController),
+                      transition: Transition.cupertino);
                 },
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(
-                      left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-                  labelStyle: TextStyle(color: color.subText),
-                  labelText: 'Súly',
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide:
-                        BorderSide(color: color.subArrow, width: 1.5.sp),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(
-                        color: color.subArrow,
-                        width:
-                            1.5.sp), //todo: mas legyen a szine mikor nem aktiv
-                  ),
-                  suffixIcon: Container(
-                    height: 20.sp,
-                    width: 40.sp,
-                    child: Center(
-                      child: Text(
-                        "Kg",
-                        style: TextStyle(color: color.subText, fontSize: 12.sp),
+                leading: Icon(
+                  CupertinoIcons.add,
+                  color: color.mainText,
+                  size: 14.sp,
+                ),
+                title: SizedBox(
+                  height: 25.sp,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Fűszer hozzáadása",
+                      style: TextStyle(
+                        color: color.mainText,
+                        fontSize: 12.sp,
                       ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 22.sp,
-              ),
-              Row(
-                children: [
-                  Text(
-                    "fűszerei",
-                    style:
-                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    width: 10.sp,
-                  ),
-                  SizedBox(
-                    height: 20.sp,
-                    width: 45.sp,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: color.flatButton,
-                          shadowColor: Colors.transparent),
-                      onPressed: () async {
-                        //todo: átkéne adni a kövi page-nek 'tempSpiceController'
-                        tempSpiceController = await Get.to(SpiceAddScreen(),
-                            transition: Transition.cupertino);
-                      },
-                      child: Icon(
-                        Icons.add,
-                        size: 15.sp,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10.sp,
+                trailing: Icon(
+                  Icons.navigate_next,
+                  color: color.mainArrow,
+                  size: 20.sp,
+                ),
               ),
               Expanded(
-                child: GetBuilder<TempSpiceController>(builder: (cont) {
+                child: GetBuilder<SpiceController>(builder: (cont) {
                   if (cont.spices.length == 0) {
                     return Center(
                         child: Text(
@@ -214,21 +159,14 @@ class ProductsEditScreen extends StatelessWidget {
                         itemCount: cont.spices.length,
                         itemBuilder: (context, index) {
                           Spice spice = cont.spices[index];
-                          return ButtonWidget(
-                            hasPadding: true,
+                          return LineButtonWidget(
                             function: () async {
-                              var result = await Get.to(
+                              Get.to(
                                   SpiceEditScreen(
                                     spice: cont.spices[index],
                                     controller: tempSpiceController,
                                   ),
                                   transition: Transition.cupertino);
-                              if (result != null) {
-                                tempSpiceController.spices[index].name =
-                                    result.name;
-                                tempSpiceController.spices[index].quantity =
-                                    result.quantity;
-                              }
                             },
                             trailing: Padding(
                                 padding: EdgeInsets.only(right: 10.sp),
@@ -236,25 +174,28 @@ class ProductsEditScreen extends StatelessWidget {
                                   spice.quantity.toString(),
                                   style: TextStyle(
                                     color: color.secondText,
-                                    fontSize: 15.sp,
+                                    fontSize: 12.sp,
                                   ),
                                 )),
                             title: SizedBox(
                               height: 25.sp,
                               child: Align(
                                 alignment: Alignment.centerLeft,
-                                child: Text(spice.name,
-                                    style: TextStyle(
-                                      color: color.secondText,
-                                      fontSize: 15.sp,
-                                    )),
+                                child: Text(
+                                  spice.name,
+                                  style: TextStyle(
+                                    color: color.secondText,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
                               ),
                             ),
+                            background: color.flatButton,
                           );
                         });
                   }
                 }),
-              ),
+              )
             ],
           ),
         ),
@@ -275,7 +216,7 @@ class ProductsEditScreen extends StatelessWidget {
           Icons.check,
           color: color.mainText,
         ),
-        backgroundColor: color.flatButton,
+        backgroundColor: color.blue,
       ),
     );
   }

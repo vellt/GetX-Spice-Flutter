@@ -5,8 +5,11 @@ import 'package:sizer/sizer.dart';
 import '../../global.dart';
 
 class CalculatingScreen extends StatelessWidget {
-  CalculatingScreen();
+  CalculatingScreen({required this.tabIndex}) {
+    tabs.setInitialIndex(tabIndex);
+  }
   final MyTabController tabs = Get.put(MyTabController());
+  final int tabIndex;
   @override
   Widget build(BuildContext context) {
     if (tabs.myTabs.length == 0) {
@@ -31,7 +34,7 @@ class CalculatingScreen extends StatelessWidget {
                   style: TextStyle(color: color.subText, fontSize: 10.sp))),
         ),
       );
-    } else
+    } else {
       return Scaffold(
         backgroundColor: color.background,
         appBar: AppBar(
@@ -70,7 +73,7 @@ class CalculatingScreen extends StatelessWidget {
                   height: 70.sp,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: 10.sp, vertical: 10.sp),
+                        horizontal: 14.sp, vertical: 10.sp),
                     child: TextFormField(
                       initialValue: (quantity.quantity.toString() != "0.0")
                           ? quantity.quantity.toString()
@@ -142,7 +145,7 @@ class CalculatingScreen extends StatelessWidget {
           children: tabs.tabContent,
           physics: BouncingScrollPhysics(),
         ),
-        floatingActionButton: FloatingActionButton(
+        /*floatingActionButton: FloatingActionButton(
           onPressed: () {
             print("index: ${tabs.controller.index}");
           },
@@ -151,7 +154,8 @@ class CalculatingScreen extends StatelessWidget {
             color: color.mainText,
           ),
           backgroundColor: color.blue,
-        ),
+        ),*/
       );
+    }
   }
 }

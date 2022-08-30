@@ -105,296 +105,298 @@ class HomeScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: EdgeInsets.only(right: 14.sp, left: 14.sp),
-          child: Column(
-            children: [
-              LineWidget(),
-              SizedBox(height: 8.sp),
-              FadeInUp(
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                LineWidget(),
+                SizedBox(height: 8.sp),
+                FadeInUp(
+                    duration: Duration(milliseconds: 600),
+                    child: SecondTextWidget("Gyors elérés")),
+                SizedBox(height: 5.sp),
+                FadeInUp(
                   duration: Duration(milliseconds: 600),
-                  child: SecondTextWidget("Gyors elérés")),
-              SizedBox(height: 5.sp),
-              FadeInUp(
-                duration: Duration(milliseconds: 600),
-                child: SubTextWidget(
-                    "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából"),
-              ),
-              SizedBox(height: 10.sp),
-              Expanded(
-                child: Align(
+                  child: SubTextWidget(
+                      "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából"),
+                ),
+                SizedBox(height: 10.sp),
+                Align(
                   alignment: Alignment.centerLeft,
                   child: SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     child: FadeInUp(
                       duration: Duration(milliseconds: 500),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          FadeInRight(
-                            duration: Duration(milliseconds: 500),
-                            child: BigButtonWidget(
-                              onPressed: () {
-                                Get.to(
-                                    () => QuickAccessScreen(
-                                        productController: productController),
-                                    transition: Transition.downToUp);
-                              },
-                              background: color.background,
-                              isDotted: true,
-                              child: Center(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                        CupertinoIcons
-                                            .rectangle_on_rectangle_angled,
-                                        size: 25.sp,
-                                        color: color.bigButton),
-                                    SizedBox(height: 8.sp),
-                                    Text(
-                                      "szerkesztés",
-                                      style: TextStyle(
-                                          fontSize: 9.sp,
+                      child: Container(
+                        height: 135.sp,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FadeInRight(
+                              duration: Duration(milliseconds: 500),
+                              child: BigButtonWidget(
+                                onPressed: () {
+                                  Get.to(
+                                      () => QuickAccessScreen(
+                                          productController: productController),
+                                      transition: Transition.downToUp);
+                                },
+                                background: color.background,
+                                isDotted: true,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                          CupertinoIcons
+                                              .rectangle_on_rectangle_angled,
+                                          size: 25.sp,
                                           color: color.bigButton),
-                                    )
-                                  ],
+                                      SizedBox(height: 8.sp),
+                                      Text(
+                                        "szerkesztés",
+                                        style: TextStyle(
+                                            fontSize: 9.sp,
+                                            color: color.bigButton),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 10.sp),
-                          GetBuilder<ProductController>(builder: (cont) {
-                            if (cont.product.length == 0) {
-                              return Center();
-                            } else {
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: cont.product.length,
-                                  itemBuilder: (context, index) {
-                                    Product product = cont.product.getAt(index);
-                                    if (product.isFavorite) {
-                                      return FadeInRight(
-                                        duration: Duration(
-                                            milliseconds:
-                                                (600 + (index * 100))),
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 10.sp,
-                                              bottom: 10.sp,
-                                              right: 10.sp),
-                                          child: BigButtonWidget(
-                                            onPressed: () {},
-                                            background: color.flatButton,
-                                            isDotted: false,
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  bottom: 10.sp,
-                                                  right: 10.sp,
-                                                  left: 10.sp,
-                                                  top: 20.sp),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  SecondTextWidget(
-                                                      product.name),
-                                                  SizedBox(height: 8.sp),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.bottomRight,
-                                                    child: Icon(
-                                                      Icons.navigate_next,
-                                                      color: color.subArrow,
-                                                      size: 20.sp,
+                            SizedBox(width: 10.sp),
+                            GetBuilder<ProductController>(builder: (cont) {
+                              if (cont.product.length == 0) {
+                                return Center();
+                              } else {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: cont.product.length,
+                                    itemBuilder: (context, index) {
+                                      Product product =
+                                          cont.product.getAt(index);
+                                      if (product.isFavorite) {
+                                        return FadeInRight(
+                                          duration: Duration(
+                                              milliseconds:
+                                                  (600 + (index * 100))),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 10.sp),
+                                            child: BigButtonWidget(
+                                              onPressed: () {
+                                                int index = cont.product.values
+                                                    .toList()
+                                                    .indexOf(product);
+                                                Get.to(
+                                                    CalculatingScreen(
+                                                        tabIndex: index),
+                                                    transition:
+                                                        Transition.cupertino);
+                                              },
+                                              background: color.flatButton,
+                                              isDotted: false,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 10.sp,
+                                                    right: 10.sp,
+                                                    left: 10.sp,
+                                                    top: 20.sp),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    SecondTextWidget(
+                                                        product.name),
+                                                    SizedBox(height: 8.sp),
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.bottomRight,
+                                                      child: Icon(
+                                                        Icons.navigate_next,
+                                                        color: color.subArrow,
+                                                        size: 20.sp,
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    } else
-                                      return Container();
-                                  });
-                            }
-                          }),
-                        ],
+                                        );
+                                      } else
+                                        return Container();
+                                    });
+                              }
+                            }),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 5.sp),
-              FadeInUp(
-                  duration: Duration(milliseconds: 500), child: LineWidget()),
-              SizedBox(height: 5.sp),
-              FadeInUp(
+                SizedBox(height: 5.sp),
+                FadeInUp(
+                    duration: Duration(milliseconds: 500), child: LineWidget()),
+                SizedBox(height: 5.sp),
+                FadeInUp(
+                    duration: Duration(milliseconds: 500),
+                    child: SecondTextWidget("További lehetőségek")),
+                SizedBox(height: 5.sp),
+                FadeInUp(
                   duration: Duration(milliseconds: 500),
-                  child: SecondTextWidget("További lehetőségek")),
-              SizedBox(height: 5.sp),
-              FadeInUp(
-                duration: Duration(milliseconds: 500),
-                child: SubTextWidget(
-                    "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából"),
-              ),
-              SizedBox(height: 5.sp),
-              FadeInUp(
-                duration: Duration(milliseconds: 500),
-                child: LineButtonWidget(
-                  background: color.blue,
-                  function: () {
-                    Get.to(
-                      () => CalculatingScreen(),
-                      transition: Transition.cupertino,
-                    );
-                  },
-                  leading: Padding(
-                    padding: EdgeInsets.only(left: 4.sp),
-                    child: Icon(
+                  child: SubTextWidget(
+                      "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából"),
+                ),
+                SizedBox(height: 5.sp),
+                FadeInUp(
+                  duration: Duration(milliseconds: 500),
+                  child: LineButtonWidget(
+                    background: color.blue,
+                    function: () {
+                      Get.to(
+                        () => CalculatingScreen(
+                          tabIndex: 0,
+                        ),
+                        transition: Transition.cupertino,
+                      );
+                    },
+                    leading: Icon(
                       CupertinoIcons.collections,
                       color: color.mainText,
                       size: 14.sp,
                     ),
-                  ),
-                  title: SizedBox(
-                    height: 25.sp,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Fűszer kimérése",
-                        style: TextStyle(
-                          color: color.mainText,
-                          fontSize: 12.sp,
+                    title: SizedBox(
+                      height: 25.sp,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Fűszer kimérése",
+                          style: TextStyle(
+                            color: color.mainText,
+                            fontSize: 12.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  trailing: Icon(
-                    Icons.navigate_next,
-                    color: color.subArrow,
-                    size: 20.sp,
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      color: color.mainArrow,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
-              ),
-              FadeInUp(
-                duration: Duration(milliseconds: 600),
-                child: LineButtonWidget(
-                  background: color.flatButton,
-                  function: () {
-                    Get.to(
-                      () => ProductsViewScreen(controller: productController),
-                      transition: Transition.cupertino,
-                    );
-                  },
-                  leading: Padding(
-                    padding: EdgeInsets.only(left: 4.sp),
-                    child: Icon(
+                FadeInUp(
+                  duration: Duration(milliseconds: 600),
+                  child: LineButtonWidget(
+                    background: color.flatButton,
+                    function: () {
+                      Get.to(
+                        () => ProductsViewScreen(controller: productController),
+                        transition: Transition.cupertino,
+                      );
+                    },
+                    leading: Icon(
                       CupertinoIcons.tray_full,
                       color: color.mainText,
                       size: 14.sp,
                     ),
-                  ),
-                  title: SizedBox(
-                    height: 25.sp,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Termékek",
-                        style: TextStyle(
-                          color: color.mainText,
-                          fontSize: 12.sp,
+                    title: SizedBox(
+                      height: 25.sp,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Termékek",
+                          style: TextStyle(
+                            color: color.mainText,
+                            fontSize: 12.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  trailing: Icon(
-                    Icons.navigate_next,
-                    color: color.subArrow,
-                    size: 20.sp,
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      color: color.subArrow,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
-              ),
-              FadeInUp(
-                duration: Duration(milliseconds: 700),
-                child: LineButtonWidget(
-                  background: color.flatButton,
-                  function: () {
-                    Get.to(
-                      () => DataViewScreen(),
-                      transition: Transition.cupertino,
-                    );
-                  },
-                  leading: Padding(
-                    padding: EdgeInsets.only(left: 4.sp),
-                    child: Icon(
+                FadeInUp(
+                  duration: Duration(milliseconds: 700),
+                  child: LineButtonWidget(
+                    background: color.flatButton,
+                    function: () {
+                      Get.to(
+                        () => DataViewScreen(),
+                        transition: Transition.cupertino,
+                      );
+                    },
+                    leading: Icon(
                       CupertinoIcons.chart_pie,
                       color: color.mainText,
                       size: 14.sp,
                     ),
-                  ),
-                  title: SizedBox(
-                    height: 25.sp,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Adatok kezelése",
-                        style: TextStyle(
-                          color: color.mainText,
-                          fontSize: 12.sp,
+                    title: SizedBox(
+                      height: 25.sp,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Adatok kezelése",
+                          style: TextStyle(
+                            color: color.mainText,
+                            fontSize: 12.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  trailing: Icon(
-                    Icons.navigate_next,
-                    color: color.subArrow,
-                    size: 20.sp,
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      color: color.subArrow,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
-              ),
-              FadeInUp(
-                duration: Duration(milliseconds: 800),
-                child: LineButtonWidget(
-                  background: color.flatButton,
-                  function: () {
-                    Get.to(
-                      () => LanguageScreen(),
-                      transition: Transition.cupertino,
-                    );
-                  },
-                  leading: Padding(
-                    padding: EdgeInsets.only(left: 4.sp),
-                    child: Icon(
+                FadeInUp(
+                  duration: Duration(milliseconds: 800),
+                  child: LineButtonWidget(
+                    background: color.flatButton,
+                    function: () {
+                      Get.to(
+                        () => LanguageScreen(),
+                        transition: Transition.cupertino,
+                      );
+                    },
+                    leading: Icon(
                       CupertinoIcons.globe,
                       color: color.mainText,
                       size: 14.sp,
                     ),
-                  ),
-                  title: SizedBox(
-                    height: 25.sp,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Nyelv beállítása",
-                        style: TextStyle(
-                          color: color.mainText,
-                          fontSize: 12.sp,
+                    title: SizedBox(
+                      height: 25.sp,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Nyelv beállítása",
+                          style: TextStyle(
+                            color: color.mainText,
+                            fontSize: 12.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  trailing: Icon(
-                    Icons.navigate_next,
-                    color: color.subArrow,
-                    size: 20.sp,
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      color: color.subArrow,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

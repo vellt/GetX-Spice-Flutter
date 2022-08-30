@@ -66,13 +66,10 @@ class ProductsViewScreen extends StatelessWidget {
                         ),
                     transition: Transition.rightToLeft);
               },
-              leading: Padding(
-                padding: EdgeInsets.only(left: 4.sp),
-                child: Icon(
-                  CupertinoIcons.add,
-                  color: color.mainText,
-                  size: 14.sp,
-                ),
+              leading: Icon(
+                CupertinoIcons.add,
+                color: color.mainText,
+                size: 14.sp,
               ),
               title: SizedBox(
                 height: 25.sp,
@@ -151,41 +148,3 @@ class ProductsViewScreen extends StatelessWidget {
     );
   }
 }
-/*
-GetBuilder<ProductController>(builder: (cont) {
-              if (cont.product.length == 0) {
-                return Center(
-                    child: Text(
-                  "Nincs termék",
-                  style: TextStyle(color: color.subText, fontSize: 10.sp),
-                ));
-              } else {
-                return ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: cont.product.length,
-                    itemBuilder: (context, index) {
-                      Product product = cont.product.getAt(index);
-                      return ButtonWidget(
-                        function: () {
-                          Get.to(
-                              () => ProductsEditScreen(
-                                    product: product,
-                                    controller: controller,
-                                  ),
-                              transition: Transition.cupertino);
-                        },
-                        title: SizedBox(
-                          height: 25.sp,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(product.name,
-                                style: TextStyle(
-                                  color: color.secondText,
-                                  fontSize: 15.sp,
-                                )),
-                          ),
-                        ),
-                      );
-                    });
-              }
-            })*/

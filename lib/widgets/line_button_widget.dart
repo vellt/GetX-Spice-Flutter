@@ -29,30 +29,33 @@ class LineButtonWidget extends StatelessWidget {
         onPressed: function,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 9.5.sp),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              if (leading != null) leading,
-              if (leading != null) SizedBox(width: 15.sp),
-              if (title != null)
-                Flexible(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      if (title != null) title,
-                      if (subtitle != null) SizedBox(height: 5.sp),
-                      if (subtitle != null) subtitle
-                    ],
+          child: Padding(
+            padding: EdgeInsets.only(left: 5.sp),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                if (leading != null) leading,
+                if (leading != null) SizedBox(width: 13.sp),
+                if (title != null)
+                  Flexible(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        if (title != null) title,
+                        if (subtitle != null) SizedBox(height: 5.sp),
+                        if (subtitle != null) subtitle
+                      ],
+                    ),
                   ),
-                ),
-              if (trailing != null)
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: trailing,
-                ),
-            ],
+                if (trailing != null)
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: trailing,
+                  ),
+              ],
+            ),
           ),
         ),
         style: ElevatedButton.styleFrom(

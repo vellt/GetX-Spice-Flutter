@@ -23,8 +23,7 @@ class ColorController extends GetxController {
 
   Color get bigButton => (!isDarkMode) ? Color(0xFF565656) : Color(0xFF565656);
 
-  Color get mainArrow =>
-      (!isDarkMode) ? Color(0xFFC9C9C96) : Color(0xFFC9C9C96);
+  Color get mainArrow => (!isDarkMode) ? Color(0xFFC9C9C96) : Color(0xFFDEDEDE);
 
   RxBool _isDarkMode = false.obs;
   final _box = GetStorage();

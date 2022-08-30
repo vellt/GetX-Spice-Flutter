@@ -6,6 +6,12 @@ import 'package:spice/screens/calculating/tabScreen.dart';
 class MyTabController extends GetxController with SingleGetTickerProviderMixin {
   late TabController controller;
   ProductController productController = Get.put(ProductController());
+  int initialIndex = 0;
+
+  void setInitialIndex(int index) {
+    controller.index = index;
+    update();
+  }
 
   List<Tab> _getProductName() {
     List<Tab> names = [];
