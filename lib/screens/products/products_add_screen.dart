@@ -61,7 +61,7 @@ class ProductsAddScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 3.sp),
+        padding: EdgeInsets.only(top: 8.sp),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 10.sp),
           child: Column(
@@ -98,7 +98,7 @@ class ProductsAddScreen extends StatelessWidget {
                 },
                 leading: Icon(
                   CupertinoIcons.add,
-                  color: color.mainText,
+                  color: color.white,
                   size: 14.sp,
                 ),
                 title: SizedBox(
@@ -108,7 +108,7 @@ class ProductsAddScreen extends StatelessWidget {
                     child: Text(
                       "Fűszer hozzáadása",
                       style: TextStyle(
-                        color: color.mainText,
+                        color: color.white,
                         fontSize: 12.sp,
                       ),
                     ),
@@ -194,7 +194,7 @@ class ProductsAddScreen extends StatelessWidget {
 
           Get.back();
         },
-        child: Icon(Icons.check, color: color.mainText),
+        child: Icon(Icons.check, color: color.white),
         backgroundColor: color.blue,
       ),
     );

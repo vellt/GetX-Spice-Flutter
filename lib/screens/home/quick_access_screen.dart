@@ -1,8 +1,8 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
-import 'package:spice/controllers/data_controller.dart';
 import 'package:spice/controllers/product_controller.dart';
 import 'package:spice/models/product.dart';
 import 'package:spice/screens/products/products_edit_screen.dart';
@@ -38,11 +38,17 @@ class QuickAccessScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 15.sp, right: 15.sp),
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: MainTextWidget("Gyors elérés"),
+                FadeInUp(
+                  duration: Duration(milliseconds: 600),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: MainTextWidget("Gyors elérés"),
+                  ),
                 ),
-                LineWidget(),
+                FadeInUp(
+                  duration: Duration(milliseconds: 600),
+                  child: LineWidget(),
+                ),
               ],
             ),
           ),
@@ -52,8 +58,11 @@ class QuickAccessScreen extends StatelessWidget {
         padding: EdgeInsets.only(top: 5.sp, right: 14.sp, left: 14.sp),
         child: Column(
           children: [
-            SubTextWidget(
-                "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából vagy"),
+            FadeInUp(
+              duration: Duration(milliseconds: 600),
+              child: SubTextWidget(
+                  "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából vagy"),
+            ),
             SizedBox(
               height: 5.sp,
             ),
@@ -71,40 +80,47 @@ class QuickAccessScreen extends StatelessWidget {
                       itemCount: cont.product.length,
                       itemBuilder: (context, index) {
                         Product product = cont.product.getAt(index);
-                        return LineButtonWidget(
-                          function: () {
-                            cont.updateProduct(
-                                key: product.key,
-                                product: Product(
-                                  name: product.name,
-                                  quantity: product.quantity,
-                                  spices: product.spices,
-                                  isFavorite: !(product.isFavorite),
-                                ));
-                          },
-                          leading: Icon(
-                            (product.isFavorite)
-                                ? CupertinoIcons.check_mark_circled
-                                : CupertinoIcons.circle,
-                            color: color.mainText,
-                            size: 14.sp,
-                          ),
-                          title: SizedBox(
-                            height: 25.sp,
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                product.name,
-                                style: TextStyle(
-                                  color: color.secondText,
-                                  fontSize: 12.sp,
+                        return FadeInUp(
+                          duration: Duration(milliseconds: (index * 100 + 700)),
+                          child: LineButtonWidget(
+                            function: () {
+                              cont.updateProduct(
+                                  key: product.key,
+                                  product: Product(
+                                    name: product.name,
+                                    quantity: product.quantity,
+                                    spices: product.spices,
+                                    isFavorite: !(product.isFavorite),
+                                  ));
+                            },
+                            leading: Icon(
+                              (product.isFavorite)
+                                  ? CupertinoIcons.check_mark_circled
+                                  : CupertinoIcons.circle,
+                              color: (product.isFavorite)
+                                  ? color.white
+                                  : color.mainText,
+                              size: 14.sp,
+                            ),
+                            title: SizedBox(
+                              height: 25.sp,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  product.name,
+                                  style: TextStyle(
+                                    color: (product.isFavorite)
+                                        ? color.white
+                                        : color.secondText,
+                                    fontSize: 12.sp,
+                                  ),
                                 ),
                               ),
                             ),
+                            background: (product.isFavorite)
+                                ? color.blue
+                                : color.flatButton,
                           ),
-                          background: (product.isFavorite)
-                              ? color.blue
-                              : color.flatButton,
                         );
                       });
                 }

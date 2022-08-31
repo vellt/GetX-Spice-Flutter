@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(),
                           child: Text(
-                            "v0.0.2",
+                            "v1.2.5",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 11.sp),
                           ),
@@ -247,8 +247,11 @@ class HomeScreen extends StatelessWidget {
                     duration: Duration(milliseconds: 500), child: LineWidget()),
                 SizedBox(height: 5.sp),
                 FadeInUp(
-                    duration: Duration(milliseconds: 500),
-                    child: SecondTextWidget("További lehetőségek")),
+                  duration: Duration(milliseconds: 500),
+                  child: FadeInUp(
+                      duration: Duration(milliseconds: 500),
+                      child: SecondTextWidget("További lehetőségek")),
+                ),
                 SizedBox(height: 5.sp),
                 FadeInUp(
                   duration: Duration(milliseconds: 500),
@@ -271,7 +274,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     leading: Icon(
                       CupertinoIcons.collections,
-                      color: color.mainText,
+                      color: color.white,
                       size: 14.sp,
                     ),
                     title: SizedBox(
@@ -281,7 +284,7 @@ class HomeScreen extends StatelessWidget {
                         child: Text(
                           "Fűszer kimérése",
                           style: TextStyle(
-                            color: color.mainText,
+                            color: color.white,
                             fontSize: 12.sp,
                           ),
                         ),
@@ -335,7 +338,9 @@ class HomeScreen extends StatelessWidget {
                     background: color.flatButton,
                     function: () {
                       Get.to(
-                        () => DataViewScreen(),
+                        () => DataViewScreen(
+                          controller: productController,
+                        ),
                         transition: Transition.cupertino,
                       );
                     },

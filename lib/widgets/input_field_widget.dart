@@ -5,21 +5,27 @@ import '../global.dart';
 class InputFieldWidget extends StatelessWidget {
   InputFieldWidget({
     Key? key,
-    required this.controller,
+    this.controller,
     required this.labelText,
     this.secondLabelText,
     required this.autofocus,
     required this.textInputType,
+    this.initialValue,
+    this.onChanged,
   }) : super(key: key);
-  TextEditingController controller;
+  TextEditingController? controller;
   String labelText;
   String? secondLabelText;
   bool autofocus;
   TextInputType textInputType;
+  String? initialValue;
+  Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
+      onChanged: onChanged,
       controller: controller,
       autofocus: autofocus,
       cursorColor: color.mainText,

@@ -11,7 +11,7 @@ class SecondTextWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 0.5.sp),
       child: Align(
-        alignment: Alignment.topLeft,
+        alignment: Alignment.centerLeft,
         child: Text(
           text,
           style: TextStyle(fontSize: 13.sp, color: color.secondText),

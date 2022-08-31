@@ -68,30 +68,3 @@ class TabScreenWidget extends StatelessWidget {
     );
   }
 }
-
-/*
-* ButtonWidget(
-                            function: () {},
-                            trailing: Padding(
-                                padding: EdgeInsets.only(right: 10.sp),
-                                child: Text(
-                                  "${(controller.quantity * (spice.quantity / product.quantity)).toStringAsFixed(2)}",
-                                  style: TextStyle(
-                                    color: color.secondText,
-                                    fontSize: 15.sp,
-                                  ),
-                                )),
-                            title: SizedBox(
-                              height: 25.sp,
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(spice.name,
-                                    style: TextStyle(
-                                      color: color.secondText,
-                                      fontSize: 15.sp,
-                                    )),
-                              ),
-                            ),
-                          )
-*
-* */

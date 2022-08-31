@@ -34,6 +34,11 @@ dependencies:
   hive: ^2.0.5
   hive_flutter: ^1.1.0
   uuid: ^3.0.6
+  flutter_unicons: ^0.0.6
+  url_launcher: ^6.0.0
+  dotted_border: ^2.0.0
+  animate_do: ^2.1.0
+  file_picker: ^4.1.6
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +59,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   # assets:
-  #   - images/a_dot_burr.jpeg
+  #   - assets/github-1.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:spice/models/spice.dart';
 import 'package:hive/hive.dart';
 
@@ -19,4 +21,22 @@ class Product extends HiveObject {
     required this.spices,
     required this.isFavorite,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'n': name,
+      'q': quantity,
+      's': spices,
+      'i': isFavorite,
+    };
+  }
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+        name: json['n'],
+        quantity: json['q'],
+        spices:
+            (json['s'] as List).map((data) => Spice.fromJson(data)).toList(),
+        isFavorite: json['i']);
+  }
 }

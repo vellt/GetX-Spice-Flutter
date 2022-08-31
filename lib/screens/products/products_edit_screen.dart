@@ -86,7 +86,7 @@ class ProductsEditScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 12.sp),
+        padding: EdgeInsets.only(top: 8.sp),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 10.sp),
           child: Column(
@@ -123,7 +123,7 @@ class ProductsEditScreen extends StatelessWidget {
                 },
                 leading: Icon(
                   CupertinoIcons.add,
-                  color: color.mainText,
+                  color: color.white,
                   size: 14.sp,
                 ),
                 title: SizedBox(
@@ -133,7 +133,7 @@ class ProductsEditScreen extends StatelessWidget {
                     child: Text(
                       "Fűszer hozzáadása",
                       style: TextStyle(
-                        color: color.mainText,
+                        color: color.white,
                         fontSize: 12.sp,
                       ),
                     ),
@@ -208,13 +208,13 @@ class ProductsEditScreen extends StatelessWidget {
                 name: productNameController.text,
                 quantity: product.quantity,
                 spices: tempSpiceController.spices,
-                isFavorite: false,
+                isFavorite: product.isFavorite,
               ));
           Get.back();
         },
         child: Icon(
           Icons.check,
-          color: color.mainText,
+          color: color.white,
         ),
         backgroundColor: color.blue,
       ),

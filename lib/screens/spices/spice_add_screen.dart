@@ -84,7 +84,7 @@ class SpiceAddScreen extends StatelessWidget {
         },
         child: Icon(
           Icons.check,
-          color: color.mainText,
+          color: color.white,
         ),
         backgroundColor: color.blue,
       ),

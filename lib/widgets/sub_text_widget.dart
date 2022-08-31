@@ -8,9 +8,12 @@ class SubTextWidget extends StatelessWidget {
   String text;
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(fontSize: 11.sp, color: color.subText),
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 11.sp, color: color.subText),
+      ),
     );
   }
 }

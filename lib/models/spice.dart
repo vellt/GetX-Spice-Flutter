@@ -15,4 +15,17 @@ class Spice extends HiveObject {
     required this.name,
     required this.quantity,
   });
+
+  Spice.fromJson(Map<String, dynamic> json)
+      : id = json['i'],
+        name = json['n'],
+        quantity = json['q'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'i': id,
+      'n': name,
+      'q': quantity,
+    };
+  }
 }
