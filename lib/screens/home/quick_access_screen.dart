@@ -10,6 +10,7 @@ import 'package:spice/widgets/line_button_widget.dart';
 import 'package:spice/widgets/line_widget.dart';
 import 'package:spice/widgets/main_text_widget.dart';
 import 'package:spice/widgets/sub_text_widget.dart';
+import '../../controllers/language_controller.dart';
 import '../../global.dart';
 
 class QuickAccessScreen extends StatelessWidget {
@@ -18,117 +19,125 @@ class QuickAccessScreen extends StatelessWidget {
   ProductController productController;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: color.background,
-      appBar: AppBar(
-        backgroundColor: color.background,
-        automaticallyImplyLeading: false,
-        shadowColor: Colors.transparent,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            size: 20.sp,
-            color: color.mainText,
-          ),
-          onPressed: () => Get.back(),
-        ),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(40.sp),
-          child: Padding(
-            padding: EdgeInsets.only(left: 15.sp, right: 15.sp),
-            child: Column(
-              children: [
-                FadeInUp(
-                  duration: Duration(milliseconds: 600),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: MainTextWidget("Gyors elérés"),
+    return GetBuilder<LanguageController>(
+        init: language,
+        builder: (controller) {
+          return Scaffold(
+            backgroundColor: color.background,
+            appBar: AppBar(
+              shadowColor: Colors.transparent.withOpacity(0.1),
+              elevation: 0,
+              surfaceTintColor: Colors.transparent,
+              backgroundColor: color.background,
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                tooltip: controller.otherBack,
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: 20.sp,
+                  color: color.mainText,
+                ),
+                onPressed: () => Get.back(),
+              ),
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(40.sp),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 15.sp, right: 15.sp),
+                  child: Column(
+                    children: [
+                      FadeInUp(
+                        duration: Duration(milliseconds: 600),
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: MainTextWidget(controller.quickAccessHeader1),
+                        ),
+                      ),
+                      FadeInUp(
+                        duration: Duration(milliseconds: 600),
+                        child: LineWidget(),
+                      ),
+                    ],
                   ),
                 ),
-                FadeInUp(
-                  duration: Duration(milliseconds: 600),
-                  child: LineWidget(),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(top: 5.sp, right: 14.sp, left: 14.sp),
-        child: Column(
-          children: [
-            FadeInUp(
-              duration: Duration(milliseconds: 600),
-              child: SubTextWidget(
-                  "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából vagy"),
-            ),
-            SizedBox(
-              height: 5.sp,
-            ),
-            Flexible(
-              child: GetBuilder<ProductController>(builder: (cont) {
-                if (cont.product.length == 0) {
-                  return Center(
-                      child: Text(
-                    "Nincs termék",
-                    style: TextStyle(color: color.subText, fontSize: 10.sp),
-                  ));
-                } else {
-                  return ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      itemCount: cont.product.length,
-                      itemBuilder: (context, index) {
-                        Product product = cont.product.getAt(index);
-                        return FadeInUp(
-                          duration: Duration(milliseconds: (index * 100 + 700)),
-                          child: LineButtonWidget(
-                            function: () {
-                              cont.updateProduct(
-                                  key: product.key,
-                                  product: Product(
-                                    name: product.name,
-                                    quantity: product.quantity,
-                                    spices: product.spices,
-                                    isFavorite: !(product.isFavorite),
-                                  ));
-                            },
-                            leading: Icon(
-                              (product.isFavorite)
-                                  ? CupertinoIcons.check_mark_circled
-                                  : CupertinoIcons.circle,
-                              color: (product.isFavorite)
-                                  ? color.white
-                                  : color.mainText,
-                              size: 14.sp,
-                            ),
-                            title: SizedBox(
-                              height: 25.sp,
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  product.name,
-                                  style: TextStyle(
+            body: Padding(
+              padding: EdgeInsets.only(top: 5.sp, right: 14.sp, left: 14.sp),
+              child: Column(
+                children: [
+                  FadeInUp(
+                    duration: Duration(milliseconds: 600),
+                    child: SubTextWidget(controller.quickAccessDescription1),
+                  ),
+                  SizedBox(
+                    height: 5.sp,
+                  ),
+                  Flexible(
+                    child: GetBuilder<ProductController>(builder: (cont) {
+                      if (cont.product.length == 0) {
+                        return Center(
+                            child: Text(
+                          controller.noProduct,
+                          style:
+                              TextStyle(color: color.subText, fontSize: 10.sp),
+                        ));
+                      } else {
+                        return ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: cont.product.length,
+                            itemBuilder: (context, index) {
+                              Product product = cont.product.getAt(index);
+                              return FadeInUp(
+                                duration:
+                                    Duration(milliseconds: (index * 100 + 700)),
+                                child: LineButtonWidget(
+                                  function: () {
+                                    cont.updateProduct(
+                                        key: product.key,
+                                        product: Product(
+                                          name: product.name,
+                                          quantity: product.quantity,
+                                          spices: product.spices,
+                                          isFavorite: !(product.isFavorite),
+                                        ));
+                                  },
+                                  leading: Icon(
+                                    (product.isFavorite)
+                                        ? CupertinoIcons.check_mark_circled
+                                        : CupertinoIcons.circle,
                                     color: (product.isFavorite)
                                         ? color.white
-                                        : color.secondText,
-                                    fontSize: 12.sp,
+                                        : color.mainText,
+                                    size: 14.sp,
                                   ),
+                                  title: SizedBox(
+                                    height: 25.sp,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        product.name,
+                                        style: TextStyle(
+                                          color: (product.isFavorite)
+                                              ? color.white
+                                              : color.secondText,
+                                          fontSize: 12.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  background: (product.isFavorite)
+                                      ? color.blue
+                                      : color.flatButton,
                                 ),
-                              ),
-                            ),
-                            background: (product.isFavorite)
-                                ? color.blue
-                                : color.flatButton,
-                          ),
-                        );
-                      });
-                }
-              }),
+                              );
+                            });
+                      }
+                    }),
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }

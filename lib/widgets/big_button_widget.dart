@@ -20,8 +20,11 @@ class BigButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          primary: background,
-          shadowColor: Colors.transparent,
+          backgroundColor: background,
+          shadowColor: Colors.transparent.withOpacity(0.1),
+          primary: Colors.transparent,
+          elevation: 0,
+          surfaceTintColor: Colors.transparent,
           padding: EdgeInsets.all(0.sp),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.sp),

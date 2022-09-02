@@ -112,4 +112,11 @@ class ProductController extends GetxController {
     _box.clear();
     update();
   }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    Hive.close();
+    super.onClose();
+  }
 }

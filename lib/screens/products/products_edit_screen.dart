@@ -14,6 +14,7 @@ import 'package:spice/widgets/line_button_widget.dart';
 import 'package:spice/widgets/line_widget.dart';
 import 'package:spice/widgets/second_text_widget.dart';
 import 'package:spice/widgets/sub_text_widget.dart';
+import '../../controllers/language_controller.dart';
 import '../../global.dart';
 
 class ProductsEditScreen extends StatelessWidget {
@@ -37,187 +38,196 @@ class ProductsEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: color.background,
-      appBar: AppBar(
-        backgroundColor: color.background,
-        automaticallyImplyLeading: false,
-        shadowColor: Colors.transparent,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            size: 20.sp,
-            color: color.mainText,
-          ),
-          onPressed: () {
-            tempSpiceController.onClose();
-            Get.back();
-          },
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 5.sp),
-            child: IconButton(
-              icon: Icon(
-                CupertinoIcons.delete,
-                size: 16.sp,
-                color: color.mainText,
-              ),
-              onPressed: () {
-                print("key: ${product.key}");
-                controller.deleteProduct(key: product.key);
-                Get.back();
-              },
-            ),
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(25.sp),
-          child: Padding(
-            padding: EdgeInsets.only(left: 15.sp),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                "Termék szerkesztése",
-                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
-              ),
-            ),
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(top: 8.sp),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 10.sp),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              InputFieldWidget(
-                controller: productNameController,
-                autofocus: false,
-                labelText: "Megnevezés",
-                textInputType: TextInputType.text,
-              ),
-              SizedBox(height: 20.sp),
-              InputFieldWidget(
-                controller: productQuantityController,
-                autofocus: false,
-                labelText: "Súly",
-                textInputType: TextInputType.numberWithOptions(),
-                secondLabelText: "Kg",
-              ),
-              SizedBox(height: 5.sp),
-              LineWidget(),
-              SizedBox(height: 5.sp),
-              SecondTextWidget("Fűszerek"),
-              SizedBox(height: 5.sp),
-              SubTextWidget(
-                  "Régebbi állapot visszaállításához válaszd ki az adott mentést a listából"),
-              SizedBox(height: 5.sp),
-              LineButtonWidget(
-                background: color.blue,
-                function: () async {
-                  //todo: átkéne adni a kövi page-nek 'tempSpiceController'
-                  Get.to(SpiceAddScreen(controller: tempSpiceController),
-                      transition: Transition.cupertino);
-                },
-                leading: Icon(
-                  CupertinoIcons.add,
-                  color: color.white,
-                  size: 14.sp,
+    return GetBuilder<LanguageController>(
+        init: language,
+        builder: (controllerLanguage) {
+          return Scaffold(
+            backgroundColor: color.background,
+            appBar: AppBar(
+              shadowColor: Colors.transparent.withOpacity(0.1),
+              elevation: 0,
+              surfaceTintColor: Colors.transparent,
+              backgroundColor: color.background,
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                tooltip: controllerLanguage.otherBack,
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: 20.sp,
+                  color: color.mainText,
                 ),
-                title: SizedBox(
-                  height: 25.sp,
+                onPressed: () {
+                  tempSpiceController.onClose();
+                  Get.back();
+                },
+              ),
+              actions: [
+                Padding(
+                  padding: EdgeInsets.only(right: 5.sp),
+                  child: IconButton(
+                    tooltip: controllerLanguage.productEditToolTip1,
+                    icon: Icon(
+                      CupertinoIcons.delete,
+                      size: 16.sp,
+                      color: color.mainText,
+                    ),
+                    onPressed: () {
+                      controller.deleteProduct(key: product.key);
+                      Get.back();
+                    },
+                  ),
+                ),
+              ],
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(25.sp),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 15.sp),
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.bottomLeft,
                     child: Text(
-                      "Fűszer hozzáadása",
+                      controllerLanguage.productEditHeader1,
                       style: TextStyle(
-                        color: color.white,
-                        fontSize: 12.sp,
-                      ),
+                          fontSize: 20.sp, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
-                trailing: Icon(
-                  Icons.navigate_next,
-                  color: color.mainArrow,
-                  size: 20.sp,
+              ),
+            ),
+            body: Padding(
+              padding: EdgeInsets.only(top: 8.sp),
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 14.sp, vertical: 10.sp),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InputFieldWidget(
+                      controller: productNameController,
+                      autofocus: false,
+                      labelText: controllerLanguage.inputText,
+                      textInputType: TextInputType.text,
+                    ),
+                    SizedBox(height: 20.sp),
+                    InputFieldWidget(
+                      controller: productQuantityController,
+                      autofocus: false,
+                      labelText: controllerLanguage.inputNumber,
+                      textInputType: TextInputType.numberWithOptions(),
+                      secondLabelText: "Kg",
+                    ),
+                    SizedBox(height: 5.sp),
+                    LineWidget(),
+                    SizedBox(height: 5.sp),
+                    SecondTextWidget(controllerLanguage.productEditHeader2),
+                    SizedBox(height: 5.sp),
+                    SubTextWidget(controllerLanguage.productEditDescription1),
+                    SizedBox(height: 5.sp),
+                    LineButtonWidget(
+                      background: color.blue,
+                      function: () async {
+                        Get.to(SpiceAddScreen(controller: tempSpiceController),
+                            transition: Transition.cupertino);
+                      },
+                      leading: Icon(
+                        CupertinoIcons.add,
+                        color: color.white,
+                        size: 14.sp,
+                      ),
+                      title: SizedBox(
+                        height: 25.sp,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            controllerLanguage.productAddButton1,
+                            style: TextStyle(
+                              color: color.white,
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.navigate_next,
+                        color: color.mainArrow,
+                        size: 20.sp,
+                      ),
+                    ),
+                    Expanded(
+                      child: GetBuilder<SpiceController>(builder: (cont) {
+                        if (cont.spices.length == 0) {
+                          return Center(
+                              child: Text(
+                            controllerLanguage.noSpice,
+                            style: TextStyle(
+                                color: color.subText, fontSize: 10.sp),
+                          ));
+                        } else {
+                          return ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: cont.spices.length,
+                              itemBuilder: (context, index) {
+                                Spice spice = cont.spices[index];
+                                return LineButtonWidget(
+                                  function: () async {
+                                    Get.to(
+                                        SpiceEditScreen(
+                                          spice: cont.spices[index],
+                                          controller: tempSpiceController,
+                                        ),
+                                        transition: Transition.cupertino);
+                                  },
+                                  trailing: Padding(
+                                      padding: EdgeInsets.only(right: 10.sp),
+                                      child: Text(
+                                        spice.quantity.toStringAsFixed(2),
+                                        style: TextStyle(
+                                          color: color.secondText,
+                                          fontSize: 12.sp,
+                                        ),
+                                      )),
+                                  title: SizedBox(
+                                    height: 25.sp,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        spice.name,
+                                        style: TextStyle(
+                                          color: color.secondText,
+                                          fontSize: 12.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  background: color.flatButton,
+                                );
+                              });
+                        }
+                      }),
+                    )
+                  ],
                 ),
               ),
-              Expanded(
-                child: GetBuilder<SpiceController>(builder: (cont) {
-                  if (cont.spices.length == 0) {
-                    return Center(
-                        child: Text(
-                      "Nincs fűszer",
-                      style: TextStyle(color: color.subText, fontSize: 10.sp),
+            ),
+            floatingActionButton: FloatingActionButton(
+              tooltip: controllerLanguage.productEditToolTip2,
+              onPressed: () {
+                controller.updateProduct(
+                    key: product.key,
+                    product: Product(
+                      name: productNameController.text,
+                      quantity: product.quantity,
+                      spices: tempSpiceController.spices,
+                      isFavorite: product.isFavorite,
                     ));
-                  } else {
-                    return ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        itemCount: cont.spices.length,
-                        itemBuilder: (context, index) {
-                          Spice spice = cont.spices[index];
-                          return LineButtonWidget(
-                            function: () async {
-                              Get.to(
-                                  SpiceEditScreen(
-                                    spice: cont.spices[index],
-                                    controller: tempSpiceController,
-                                  ),
-                                  transition: Transition.cupertino);
-                            },
-                            trailing: Padding(
-                                padding: EdgeInsets.only(right: 10.sp),
-                                child: Text(
-                                  spice.quantity.toStringAsFixed(2),
-                                  style: TextStyle(
-                                    color: color.secondText,
-                                    fontSize: 12.sp,
-                                  ),
-                                )),
-                            title: SizedBox(
-                              height: 25.sp,
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  spice.name,
-                                  style: TextStyle(
-                                    color: color.secondText,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            background: color.flatButton,
-                          );
-                        });
-                  }
-                }),
-              )
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.updateProduct(
-              key: product.key,
-              product: Product(
-                name: productNameController.text,
-                quantity: product.quantity,
-                spices: tempSpiceController.spices,
-                isFavorite: product.isFavorite,
-              ));
-          Get.back();
-        },
-        child: Icon(
-          Icons.check,
-          color: color.white,
-        ),
-        backgroundColor: color.blue,
-      ),
-    );
+                Get.back();
+              },
+              child: Icon(
+                Icons.check,
+                color: color.white,
+              ),
+              backgroundColor: color.blue,
+            ),
+          );
+        });
   }
 }

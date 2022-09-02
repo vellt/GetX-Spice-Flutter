@@ -59,8 +59,11 @@ class LineButtonWidget extends StatelessWidget {
           ),
         ),
         style: ElevatedButton.styleFrom(
-            primary: background,
-            shadowColor: Colors.transparent,
+            backgroundColor: background,
+            shadowColor: Colors.transparent.withOpacity(0.1),
+            primary: Colors.transparent,
+            elevation: 0,
+            surfaceTintColor: Colors.transparent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6.sp), // <-- Radius
             )),
