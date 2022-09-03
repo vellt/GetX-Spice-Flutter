@@ -11,9 +11,10 @@ import 'package:spice/widgets/second_text_widget.dart';
 import 'package:spice/widgets/sub_text_widget.dart';
 import '../../controllers/language_controller.dart';
 import '../../global.dart';
+import '../../widgets/get_dialog_widget.dart';
 
 class DataViewScreen extends StatelessWidget {
-  DataViewScreen({Key? key, required this.controller}) : super(key: key) {}
+  DataViewScreen({Key? key, required this.controller}) : super(key: key);
   ProductController controller;
   @override
   Widget build(BuildContext context) {
@@ -84,7 +85,8 @@ class DataViewScreen extends StatelessWidget {
                       child: LineButtonWidget(
                         background: color.flatButton,
                         function: () {
-                          controller.restore(context);
+                          controller.restore(
+                              context, controllerLanguage.snackBarRestore);
                         },
                         leading: Padding(
                           padding: EdgeInsets.only(left: 4.sp),
@@ -133,7 +135,10 @@ class DataViewScreen extends StatelessWidget {
                       child: LineButtonWidget(
                         background: color.blue,
                         function: () {
-                          controller.makingBackup(context);
+                          controller.makingBackup(
+                              context,
+                              controllerLanguage.snackBarBackup1,
+                              controllerLanguage.snackBarBackup2);
                         },
                         leading: Padding(
                           padding: EdgeInsets.only(left: 4.sp),
@@ -185,7 +190,22 @@ class DataViewScreen extends StatelessWidget {
                       child: LineButtonWidget(
                         background: color.flatButton,
                         function: () {
-                          controller.delete();
+                          Get.dialog(
+                            GetDialogWidget(
+                              title: controllerLanguage.alertDelete,
+                              description: controllerLanguage.alertDataDelete,
+                              buttonTitle: controllerLanguage.alertYes,
+                              buttonTitle2: controllerLanguage.alertNo,
+                              buttonOnPressed: () {
+                                Get.back();
+                                controller.delete(
+                                    context, controllerLanguage.snackBarDelete);
+                              },
+                              buttonOnPressed2: () {
+                                Get.back();
+                              },
+                            ),
+                          );
                         },
                         leading: GetBuilder<ProductController>(builder: (cont) {
                           return Padding(

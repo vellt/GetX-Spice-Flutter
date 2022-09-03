@@ -11,7 +11,7 @@ import 'package:spice/widgets/sub_text_widget.dart';
 import '../../global.dart';
 
 class LanguageScreen extends StatelessWidget {
-  LanguageScreen({Key? key}) : super(key: key) {}
+  LanguageScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LanguageController>(

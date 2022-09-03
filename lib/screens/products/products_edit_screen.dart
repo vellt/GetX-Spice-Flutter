@@ -8,7 +8,6 @@ import 'package:spice/models/product.dart';
 import 'package:spice/models/spice.dart';
 import 'package:spice/screens/spices/spice_add_screen.dart';
 import 'package:spice/screens/spices/spice_edit_screen.dart';
-import 'package:spice/widgets/button_widget.dart';
 import 'package:spice/widgets/input_field_widget.dart';
 import 'package:spice/widgets/line_button_widget.dart';
 import 'package:spice/widgets/line_widget.dart';
@@ -16,6 +15,7 @@ import 'package:spice/widgets/second_text_widget.dart';
 import 'package:spice/widgets/sub_text_widget.dart';
 import '../../controllers/language_controller.dart';
 import '../../global.dart';
+import '../../widgets/get_dialog_widget.dart';
 
 class ProductsEditScreen extends StatelessWidget {
   ProductsEditScreen(
@@ -72,8 +72,19 @@ class ProductsEditScreen extends StatelessWidget {
                       color: color.mainText,
                     ),
                     onPressed: () {
-                      controller.deleteProduct(key: product.key);
-                      Get.back();
+                      Get.dialog(GetDialogWidget(
+                        title: controllerLanguage.alertProductDeleteTitle,
+                        description: controllerLanguage.alertProductDelete,
+                        buttonTitle: controllerLanguage.alertYes,
+                        buttonTitle2: controllerLanguage.alertNo,
+                        buttonOnPressed: () {
+                          controller.deleteProduct(key: product.key);
+                          Get.back(closeOverlays: true);
+                        },
+                        buttonOnPressed2: () {
+                          Get.back();
+                        },
+                      ));
                     },
                   ),
                 ),
@@ -211,15 +222,49 @@ class ProductsEditScreen extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               tooltip: controllerLanguage.productEditToolTip2,
               onPressed: () {
-                controller.updateProduct(
-                    key: product.key,
-                    product: Product(
-                      name: productNameController.text,
-                      quantity: product.quantity,
-                      spices: tempSpiceController.spices,
-                      isFavorite: product.isFavorite,
-                    ));
-                Get.back();
+                if (productNameController.text.trim().isEmpty) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertProductNameEmpty,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else if (productQuantityController.text.trim().isEmpty) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertProductQuantityEmpty,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else if (double.tryParse(
+                        productQuantityController.text.replaceAll(',', '.')) ==
+                    null) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertProductQuantityNaN,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else {
+                  double number = double.parse(
+                      productQuantityController.text.replaceAll(',', '.'));
+                  controller.updateProduct(
+                      key: product.key,
+                      product: Product(
+                        name: productNameController.text.trim(),
+                        quantity: number,
+                        spices: tempSpiceController.spices,
+                        isFavorite: product.isFavorite,
+                      ));
+
+                  Get.back();
+                }
               },
               child: Icon(
                 Icons.check,

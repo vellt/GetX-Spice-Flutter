@@ -16,7 +16,7 @@ import '../../controllers/language_controller.dart';
 import '../../global.dart';
 
 class ProductsViewScreen extends StatelessWidget {
-  ProductsViewScreen({Key? key, required this.controller}) : super(key: key) {}
+  ProductsViewScreen({Key? key, required this.controller}) : super(key: key);
   ProductController controller;
 
   @override
@@ -129,14 +129,17 @@ class ProductsViewScreen extends StatelessWidget {
                     SizedBox(height: 5.sp),
                     GetBuilder<ProductController>(builder: (cont) {
                       if (cont.product.length == 0) {
-                        return Container(
-                          height: 150.sp,
-                          child: Center(
-                              child: Text(
-                            controller2.noProduct,
-                            style: TextStyle(
-                                color: color.subText, fontSize: 10.sp),
-                          )),
+                        return FadeInUp(
+                          duration: Duration(milliseconds: 700),
+                          child: Container(
+                            height: 150.sp,
+                            child: Center(
+                                child: Text(
+                              controller2.noProduct,
+                              style: TextStyle(
+                                  color: color.subText, fontSize: 10.sp),
+                            )),
+                          ),
                         );
                       } else {
                         return ListView.builder(

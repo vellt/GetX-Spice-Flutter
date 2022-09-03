@@ -19,6 +19,7 @@ class CalculatingScreen extends StatelessWidget {
           init: language,
           builder: (controller) {
             return Scaffold(
+              backgroundColor: color.background,
               appBar: AppBar(
                 shadowColor: Colors.transparent.withOpacity(0.1),
                 elevation: 0,
@@ -35,12 +36,15 @@ class CalculatingScreen extends StatelessWidget {
                   onPressed: () => Get.back(),
                 ),
               ),
-              body: Container(
-                color: color.background,
-                child: Center(
-                  child: Text(
-                    controller.noProduct,
-                    style: TextStyle(color: color.subText, fontSize: 10.sp),
+              body: FadeInUp(
+                duration: Duration(milliseconds: 500),
+                child: Container(
+                  color: color.background,
+                  child: Center(
+                    child: Text(
+                      controller.noProduct,
+                      style: TextStyle(color: color.subText, fontSize: 10.sp),
+                    ),
                   ),
                 ),
               ),

@@ -1,6 +1,5 @@
 import 'package:spice/controllers/language_controller.dart';
 import 'package:spice/controllers/quantity_controller.dart';
-import 'package:spice/screens/language/language_screen.dart';
 
 import 'controllers/color_controller.dart';
 import 'package:get/get.dart';

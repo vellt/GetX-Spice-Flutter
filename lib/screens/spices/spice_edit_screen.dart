@@ -7,6 +7,7 @@ import 'package:spice/models/spice.dart';
 import 'package:spice/widgets/input_field_widget.dart';
 import '../../controllers/language_controller.dart';
 import '../../global.dart';
+import '../../widgets/get_dialog_widget.dart';
 
 class SpiceEditScreen extends StatelessWidget {
   SpiceEditScreen({Key? key, required this.spice, required this.controller})
@@ -58,9 +59,21 @@ class SpiceEditScreen extends StatelessWidget {
                       color: color.mainText,
                     ),
                     onPressed: () {
-                      print("key: ${spice.id}");
-                      controller.deleteSpice(id: spice.id);
-                      Get.back();
+                      Get.dialog(
+                        GetDialogWidget(
+                          title: controllerLanguage.alertSpiceDeleteTitle,
+                          description: controllerLanguage.alertSpiceDelete,
+                          buttonTitle: controllerLanguage.alertYes,
+                          buttonTitle2: controllerLanguage.alertNo,
+                          buttonOnPressed: () {
+                            controller.deleteSpice(id: spice.id);
+                            Get.back(closeOverlays: true);
+                          },
+                          buttonOnPressed2: () {
+                            Get.back();
+                          },
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -106,14 +119,47 @@ class SpiceEditScreen extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               tooltip: controllerLanguage.spiceEditToolTip2,
               onPressed: () {
-                double quantity = double.parse(spiceQuantityController.text);
-                controller.updateSpice(
-                    spice: Spice(
-                  id: spice.id,
-                  name: spiceNameController.text,
-                  quantity: quantity,
-                ));
-                Get.back();
+                if (spiceNameController.text.trim().isEmpty) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertSpiceNameEmpty,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else if (spiceQuantityController.text.trim().isEmpty) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertSpiceQuantityEmpty,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else if (double.tryParse(
+                        spiceQuantityController.text.replaceAll(',', '.')) ==
+                    null) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertSpiceQuantityNaN,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else {
+                  double number = double.parse(
+                      spiceQuantityController.text.replaceAll(',', '.'));
+                  controller.updateSpice(
+                      spice: Spice(
+                    id: spice.id,
+                    name: spiceNameController.text,
+                    quantity: number,
+                  ));
+
+                  Get.back();
+                }
               },
               child: Icon(
                 Icons.check,

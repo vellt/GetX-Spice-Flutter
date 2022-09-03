@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 import 'package:spice/controllers/product_controller.dart';
 import 'package:spice/models/product.dart';
-import 'package:spice/screens/products/products_edit_screen.dart';
 import 'package:spice/widgets/line_button_widget.dart';
 import 'package:spice/widgets/line_widget.dart';
 import 'package:spice/widgets/main_text_widget.dart';
@@ -15,7 +14,7 @@ import '../../global.dart';
 
 class QuickAccessScreen extends StatelessWidget {
   QuickAccessScreen({Key? key, required this.productController})
-      : super(key: key) {}
+      : super(key: key);
   ProductController productController;
   @override
   Widget build(BuildContext context) {
@@ -75,12 +74,15 @@ class QuickAccessScreen extends StatelessWidget {
                   Flexible(
                     child: GetBuilder<ProductController>(builder: (cont) {
                       if (cont.product.length == 0) {
-                        return Center(
-                            child: Text(
-                          controller.noProduct,
-                          style:
-                              TextStyle(color: color.subText, fontSize: 10.sp),
-                        ));
+                        return FadeInUp(
+                          duration: Duration(milliseconds: 600),
+                          child: Center(
+                              child: Text(
+                            controller.noProduct,
+                            style: TextStyle(
+                                color: color.subText, fontSize: 10.sp),
+                          )),
+                        );
                       } else {
                         return ListView.builder(
                             physics: BouncingScrollPhysics(),

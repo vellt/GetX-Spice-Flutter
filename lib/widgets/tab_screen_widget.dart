@@ -23,11 +23,14 @@ class TabScreenWidget extends StatelessWidget {
         return GetBuilder<QuantityController>(builder: (controller) {
           print("változott a szorzó-------->${quantity.quantity.toString()}");
           if (controller.quantity == 0 || product.spices.length == 0) {
-            return Center(
-                child: Text(
-              controllerLanguage.noSpice,
-              style: TextStyle(color: color.subText, fontSize: 10.sp),
-            ));
+            return FadeInUp(
+              duration: Duration(milliseconds: 500),
+              child: Center(
+                  child: Text(
+                controllerLanguage.noSpice,
+                style: TextStyle(color: color.subText, fontSize: 10.sp),
+              )),
+            );
           } else {
             return ListView.builder(
                 physics: BouncingScrollPhysics(),

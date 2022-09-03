@@ -5,9 +5,10 @@ import 'package:spice/controllers/spice_controller.dart';
 import 'package:spice/widgets/input_field_widget.dart';
 import '../../controllers/language_controller.dart';
 import '../../global.dart';
+import '../../widgets/get_dialog_widget.dart';
 
 class SpiceAddScreen extends StatelessWidget {
-  SpiceAddScreen({Key? key, required this.controller}) : super(key: key) {}
+  SpiceAddScreen({Key? key, required this.controller}) : super(key: key);
   //text controllers
   TextEditingController spiceNameController = TextEditingController();
   TextEditingController spiceQuantityController = TextEditingController();
@@ -78,12 +79,45 @@ class SpiceAddScreen extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               tooltip: controllerLanguage.spiceAddToolTip1,
               onPressed: () {
-                double quantity = double.parse(spiceQuantityController.text);
-                controller.addSpice(
-                  name: spiceNameController.text,
-                  quantity: quantity,
-                );
-                Get.back();
+                if (spiceNameController.text.trim().isEmpty) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertSpiceNameEmpty,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else if (spiceQuantityController.text.trim().isEmpty) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertSpiceQuantityEmpty,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else if (double.tryParse(
+                        spiceQuantityController.text.replaceAll(',', '.')) ==
+                    null) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertSpiceQuantityNaN,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else {
+                  double number = double.parse(
+                      spiceQuantityController.text.replaceAll(',', '.'));
+                  controller.addSpice(
+                    name: spiceNameController.text,
+                    quantity: number,
+                  );
+
+                  Get.back();
+                }
               },
               child: Icon(
                 Icons.check,

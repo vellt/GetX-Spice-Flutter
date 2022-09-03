@@ -8,6 +8,7 @@ import 'package:spice/models/product.dart';
 import 'package:spice/models/spice.dart';
 import 'package:spice/screens/spices/spice_add_screen.dart';
 import 'package:spice/screens/spices/spice_edit_screen.dart';
+import 'package:spice/widgets/get_dialog_widget.dart';
 import 'package:spice/widgets/input_field_widget.dart';
 import 'package:spice/widgets/line_button_widget.dart';
 import 'package:spice/widgets/line_widget.dart';
@@ -192,17 +193,49 @@ class ProductsAddScreen extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               tooltip: controllerLanguage.productAddToolTip1,
               onPressed: () {
-                controller.createProduct(
-                  product: Product(
-                    name: productNameController.text,
-                    quantity:
-                        double.parse(productQuantityController.text), //a vessz
-                    spices: tempSpiceController.spices,
-                    isFavorite: false,
-                  ),
-                );
+                if (productNameController.text.trim().isEmpty) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertProductNameEmpty,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else if (productQuantityController.text.trim().isEmpty) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertProductQuantityEmpty,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else if (double.tryParse(
+                        productQuantityController.text.replaceAll(',', '.')) ==
+                    null) {
+                  Get.dialog(
+                    GetDialogWidget(
+                      title: controllerLanguage.alertError,
+                      description: controllerLanguage.alertProductQuantityNaN,
+                      buttonTitle: controllerLanguage.alertClose,
+                      buttonOnPressed: () => Get.back(),
+                    ),
+                  );
+                } else {
+                  double number = double.parse(
+                      productQuantityController.text.replaceAll(',', '.'));
+                  controller.createProduct(
+                    product: Product(
+                      name: productNameController.text.trim(),
+                      quantity: number, //a vessz
+                      spices: tempSpiceController.spices,
+                      isFavorite: false,
+                    ),
+                  );
 
-                Get.back();
+                  Get.back();
+                }
               },
               child: Icon(Icons.check, color: color.white),
               backgroundColor: color.blue,
