@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -10,6 +11,7 @@ import 'models/product.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //hivedb
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init(); //getstoreg
   await Hive.initFlutter(); //hivedb
   //for adapter generating: flutter packages pub run build_runner build
