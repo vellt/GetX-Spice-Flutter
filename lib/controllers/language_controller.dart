@@ -24,7 +24,7 @@ class LanguageController extends GetxController {
       ? "Itt található az applikáció fő menüpontjai"
       : "Here are the main menus of the app.";
   String get homeButton2 =>
-      (isHungarian) ? "Fűszer kimérése" : "Spice weighing";
+      (isHungarian) ? "Fűszer kimérése" : "Measure Spices";
   String get homeButton3 => (isHungarian) ? "Termékek" : "Products";
   String get homeButton4 =>
       (isHungarian) ? "Adatok kezelése" : "Data management";
