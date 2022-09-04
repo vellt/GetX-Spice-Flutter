@@ -26,16 +26,13 @@ Hi! 😄✌️ It's a getX-based spice measuring application.
 
 ## Major features
 
-- 
-
-
 ## Project preview 📷
 
 
 <p align="center">
-   <img width="19.65%" alt="01" src="https://user-images.githubusercontent.com/61885011/188321265-1507d8ac-46ef-4db5-962e-aa66f6438e8b.jpeg"> 
-   <img width="19.65%" alt="02" src="https://user-images.githubusercontent.com/61885011/188321266-f1e34034-b28c-4913-9f61-bf6cea7096ac.jpeg"> 
-   <img width="19.65%" alt="03" src="https://user-images.githubusercontent.com/61885011/188321268-22fce4d5-0cfc-4357-b1e3-f81602e6ed4b.jpeg"> 
-   <img width="19.65%" alt="04" src="https://user-images.githubusercontent.com/61885011/188321271-d82462b6-2e76-4952-9205-26726d9d5874.jpeg"> 
-   <img width="19.65%" alt="05" src="https://user-images.githubusercontent.com/61885011/188321264-fc7cfb91-f67c-4056-ba24-6d260cde65b3.jpeg"> 
+   <img width="19.6%" alt="01" src="https://user-images.githubusercontent.com/61885011/188321265-1507d8ac-46ef-4db5-962e-aa66f6438e8b.jpeg"> 
+   <img width="19.6%" alt="02" src="https://user-images.githubusercontent.com/61885011/188321266-f1e34034-b28c-4913-9f61-bf6cea7096ac.jpeg"> 
+   <img width="19.6%" alt="03" src="https://user-images.githubusercontent.com/61885011/188323153-6c680d01-ee65-44fd-a77f-51bf3dc8d3d8.jpeg"> 
+   <img width="19.6%" alt="04" src="https://user-images.githubusercontent.com/61885011/188321271-d82462b6-2e76-4952-9205-26726d9d5874.jpeg"> 
+   <img width="19.6%" alt="05" src="https://user-images.githubusercontent.com/61885011/188321264-fc7cfb91-f67c-4056-ba24-6d260cde65b3.jpeg"> 
 </p>
