@@ -24,8 +24,6 @@ Hi! It's a getX-based spice measuring application. For everyday life or work, it
 - Export and import data in JSON 💾
 
 ## Products data structure
-
-
 For an overview of the structure, let's take the first product with an index of zero as an example. The product is in the quick access and contains a spice:
 
 ```JSON
@@ -42,6 +40,16 @@ For an overview of the structure, let's take the first product with an index of 
    "is it in quick access": true
 },
 ```
+
+## Pull request
+If you want to improve it, fork it and send a <a target="_blank" href="https://github.com/vellt/GetX-Spice-Flutter/pulls">Pull request</a>.  <br> Be a Contributor! 
+
+## Issues 🪲
+Or in case of a bug, write a short description in <a target="_blank" href="https://github.com/vellt/GetX-Spice-Flutter/pulls">Issues</a>. Thanks! 
+
+## License
+This project is licensed under the <a href="https://github.com/vellt/GetX-Spice-Flutter/blob/main/LICENSE">MIT License</a>
+
 
 ## Project preview 📸
 
