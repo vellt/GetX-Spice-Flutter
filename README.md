@@ -45,7 +45,7 @@ For an overview of the structure, let's take the first product with an index of 
 If you want to improve it, fork it and send a <a target="_blank" href="https://github.com/vellt/GetX-Spice-Flutter/pulls">Pull request</a>.  <br> Be a Contributor! 
 
 ## Issues 🪲
-Or in case of a bug, write a short description in <a target="_blank" href="https://github.com/vellt/GetX-Spice-Flutter/pulls">Issues</a>. Thanks! 
+In case of a bug, write a short description in <a target="_blank" href="https://github.com/vellt/GetX-Spice-Flutter/pulls">Issues</a>. Thanks! 
 
 ## License
 This project is licensed under the <a href="https://github.com/vellt/GetX-Spice-Flutter/blob/main/LICENSE">MIT License</a>
