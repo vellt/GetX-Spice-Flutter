@@ -17,11 +17,11 @@ Hi! It's a getX-based spice measuring application. For everyday life or work, it
 - application <a href="https://github.com/vellt/GetX-Spice-Flutter/releases/download/v1.3.7/spice.apk">  download  </a>
 - temp data <a href="https://github.com/vellt/GetX-Spice-Flutter/releases/download/v1.3.7/temp-data.json">  download  </a>
 
-## Major features🔧
-- Data is local stored with HiveDB on your phone 📱
-- Mechanical theme changer (light ⭐ and dark🌙)
-- Languages support 🌐
-- Export and import data in JSON 💾
+## Major features ⭐
+- Data is local stored with HiveDB on your phone
+- Mechanical theme changer (light/dark)
+- Languages support
+- Export and import data in JSON
 
 ## Products data structure
 For an overview of the structure, let's take the first product with an index of zero as an example. The product is in the quick access and contains a spice:
