@@ -1,6 +1,6 @@
 # spice
 
-Hi! It's a getX-based spice measuring application. For everyday life or work, it will be your faithful companion. If you've always wanted to store the seasoning recipe for your products on your mobile, this app is for you.
+Hi! It's a getX-based spice measuring application. For everyday life or work, it will be your faithful companion. If you've always wanted to store seasoning recipe for your meat products on your mobile, this app is for you.
 
 ![visitors](https://visitor-badge.glitch.me/badge?right_color=teal&page_id=vellt/GetX-Spice-Flutter) 
 ![Web 1280 – 1]( https://img.shields.io/badge/made%20with-flutter-blue?style=flat)
@@ -27,7 +27,7 @@ supported android versions: from 9 upwards
 - Export and import data in JSON
 
 ## Products data structure
-For an overview of the structure, let's take the first product with an index of zero as an example. The product is in the quick access and contains a spice:
+For an overview of the structure, let's take the first meat product with an index of zero as an example. The product is in the quick access and contains a spice:
 
 ```JSON
 "0": {      
