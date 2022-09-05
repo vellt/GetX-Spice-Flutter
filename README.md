@@ -14,6 +14,9 @@ Hi! It's a getX-based spice measuring application. For everyday life or work, it
 
 ## Download 📲
 ### Android v1.3.7
+```JSON
+supported android versions: from 9 upwards
+```
 - application <a href="https://github.com/vellt/GetX-Spice-Flutter/releases/download/v1.3.7/spice.apk">  download  </a>
 - temp data <a href="https://github.com/vellt/GetX-Spice-Flutter/releases/download/v1.3.7/temp-data.json">  download  </a>
 
