@@ -10,7 +10,7 @@ Hi! It's a getX-based spice measuring application. For everyday life or work, it
 | Dependencies |
 |  :---  |
 | `Cupertino icons`  `Get` `Get storage`  `Sizer`  `Hive`  `Hive flutter`  `UUID`  `Flutter unicons`  `URL launcher` `Dotted border`  `Animate do`  `File picker`  `Permission handler` |
-| More info about detailed list <a href="https://github.com/vellt/GetX-Spice-Flutter/blob/main/pubspec.yaml">pubspec.yaml</a> |
+| More info about the dep. list in <a href="https://github.com/vellt/GetX-Spice-Flutter/blob/main/pubspec.yaml">pubspec.yaml</a> |
 
 ## Download 📲
 ### Android v1.3.7
