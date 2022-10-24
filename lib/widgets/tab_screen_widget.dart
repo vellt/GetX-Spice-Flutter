@@ -28,7 +28,7 @@ class TabScreenWidget extends StatelessWidget {
               child: Center(
                   child: Text(
                 controllerLanguage.noSpice,
-                style: TextStyle(color: color.subText, fontSize: 10.sp),
+                style: TextStyle(color: theme.color.subText, fontSize: 10.sp),
               )),
             );
           } else {
@@ -47,7 +47,7 @@ class TabScreenWidget extends StatelessWidget {
                           child: Text(
                             "${(controller.quantity * (spice.quantity / product.quantity)).toStringAsFixed(2)}",
                             style: TextStyle(
-                              color: color.secondText,
+                              color: theme.color.secondText,
                               fontSize: 12.sp,
                             ),
                           )),
@@ -58,13 +58,13 @@ class TabScreenWidget extends StatelessWidget {
                           child: Text(
                             spice.name,
                             style: TextStyle(
-                              color: color.secondText,
+                              color: theme.color.secondText,
                               fontSize: 12.sp,
                             ),
                           ),
                         ),
                       ),
-                      background: color.flatButton,
+                      background: theme.color.flatButton,
                     ),
                   );
                 });

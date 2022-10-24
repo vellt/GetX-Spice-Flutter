@@ -11,7 +11,9 @@ class MainTextWidget extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          fontSize: 20.sp, color: color.mainText, fontWeight: FontWeight.w600),
+          fontSize: 20.sp,
+          color: theme.color.mainText,
+          fontWeight: FontWeight.w600),
     );
   }
 }

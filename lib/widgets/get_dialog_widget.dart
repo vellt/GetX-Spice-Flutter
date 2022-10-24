@@ -26,7 +26,7 @@ class GetDialogWidget extends StatelessWidget {
       title: Text(title),
       content: Text(
         description,
-        style: TextStyle(color: color.secondText),
+        style: TextStyle(color: theme.color.secondText),
       ),
       actions: [
         if (buttonTitle2 != null)

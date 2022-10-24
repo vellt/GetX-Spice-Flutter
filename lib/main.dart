@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Spice',
-          theme: color.currentTheme,
+          theme: theme.lightTheme,
+          darkTheme: theme.darkTheme,
           home: HomeScreen(),
         );
       });

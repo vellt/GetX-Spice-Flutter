@@ -42,19 +42,19 @@ class ProductsEditScreen extends StatelessWidget {
         init: language,
         builder: (controllerLanguage) {
           return Scaffold(
-            backgroundColor: color.background,
+            backgroundColor: theme.color.background,
             appBar: AppBar(
               shadowColor: Colors.transparent.withOpacity(0.1),
               elevation: 0,
               surfaceTintColor: Colors.transparent,
-              backgroundColor: color.background,
+              backgroundColor: theme.color.background,
               automaticallyImplyLeading: false,
               leading: IconButton(
                 tooltip: controllerLanguage.otherBack,
                 icon: Icon(
                   Icons.arrow_back,
                   size: 20.sp,
-                  color: color.mainText,
+                  color: theme.color.mainText,
                 ),
                 onPressed: () {
                   tempSpiceController.onClose();
@@ -69,7 +69,7 @@ class ProductsEditScreen extends StatelessWidget {
                     icon: Icon(
                       CupertinoIcons.delete,
                       size: 16.sp,
-                      color: color.mainText,
+                      color: theme.color.mainText,
                     ),
                     onPressed: () {
                       Get.dialog(GetDialogWidget(
@@ -134,14 +134,14 @@ class ProductsEditScreen extends StatelessWidget {
                     SubTextWidget(controllerLanguage.productEditDescription1),
                     SizedBox(height: 5.sp),
                     LineButtonWidget(
-                      background: color.blue,
+                      background: theme.color.blue,
                       function: () async {
                         Get.to(SpiceAddScreen(controller: tempSpiceController),
                             transition: Transition.cupertino);
                       },
                       leading: Icon(
                         CupertinoIcons.add,
-                        color: color.white,
+                        color: theme.color.white,
                         size: 14.sp,
                       ),
                       title: SizedBox(
@@ -151,7 +151,7 @@ class ProductsEditScreen extends StatelessWidget {
                           child: Text(
                             controllerLanguage.productAddButton1,
                             style: TextStyle(
-                              color: color.white,
+                              color: theme.color.white,
                               fontSize: 12.sp,
                             ),
                           ),
@@ -159,7 +159,7 @@ class ProductsEditScreen extends StatelessWidget {
                       ),
                       trailing: Icon(
                         Icons.navigate_next,
-                        color: color.mainArrow,
+                        color: theme.color.mainArrow,
                         size: 20.sp,
                       ),
                     ),
@@ -170,7 +170,7 @@ class ProductsEditScreen extends StatelessWidget {
                               child: Text(
                             controllerLanguage.noSpice,
                             style: TextStyle(
-                                color: color.subText, fontSize: 10.sp),
+                                color: theme.color.subText, fontSize: 10.sp),
                           ));
                         } else {
                           return ListView.builder(
@@ -192,7 +192,7 @@ class ProductsEditScreen extends StatelessWidget {
                                       child: Text(
                                         spice.quantity.toStringAsFixed(2),
                                         style: TextStyle(
-                                          color: color.secondText,
+                                          color: theme.color.secondText,
                                           fontSize: 12.sp,
                                         ),
                                       )),
@@ -203,13 +203,13 @@ class ProductsEditScreen extends StatelessWidget {
                                       child: Text(
                                         spice.name,
                                         style: TextStyle(
-                                          color: color.secondText,
+                                          color: theme.color.secondText,
                                           fontSize: 12.sp,
                                         ),
                                       ),
                                     ),
                                   ),
-                                  background: color.flatButton,
+                                  background: theme.color.flatButton,
                                 );
                               });
                         }
@@ -268,9 +268,9 @@ class ProductsEditScreen extends StatelessWidget {
               },
               child: Icon(
                 Icons.check,
-                color: color.white,
+                color: theme.color.white,
               ),
-              backgroundColor: color.blue,
+              backgroundColor: theme.color.blue,
             ),
           );
         });

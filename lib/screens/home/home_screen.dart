@@ -16,6 +16,7 @@ import 'package:spice/widgets/line_widget.dart';
 import 'package:spice/widgets/second_text_widget.dart';
 import 'package:spice/widgets/sub_text_widget.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import '../../controllers/theme_controller.dart' as t;
 
 import '../../controllers/language_controller.dart';
 import '../../global.dart';
@@ -30,12 +31,12 @@ class HomeScreen extends StatelessWidget {
         builder: (controller) {
           return Obx(() {
             return Scaffold(
-              backgroundColor: color.background,
+              backgroundColor: theme.color.background,
               appBar: AppBar(
                 shadowColor: Colors.transparent.withOpacity(0.1),
                 elevation: 0,
                 surfaceTintColor: Colors.transparent,
-                backgroundColor: color.background,
+                backgroundColor: theme.color.background,
                 bottom: PreferredSize(
                   preferredSize: Size.fromHeight(0.sp),
                   child: Padding(
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                             child: Text(
                               "Spice",
                               style: TextStyle(
-                                color: color.mainText,
+                                color: theme.color.mainText,
                                 fontSize: 22.sp,
                               ),
                             ),
@@ -61,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                             height: 21.sp,
                             width: 40.sp,
                             decoration: BoxDecoration(
-                                color: color.red,
+                                color: theme.color.red,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
                             child: Align(
@@ -84,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                                 splashRadius: 22,
                                 icon: Unicon(
                                   Unicons.uniGithub,
-                                  color: color.mainText,
+                                  color: theme.color.mainText,
                                   size: 20.sp,
                                 ),
                                 onPressed: () async {
@@ -98,13 +99,14 @@ class HomeScreen extends StatelessWidget {
                                 tooltip: controller.homeToolTip2,
                                 splashRadius: 22,
                                 icon: Icon(
-                                  (color.isDarkMode)
+                                  (theme.isDarkMode)
                                       ? Icons.light_mode
                                       : Icons.dark_mode,
-                                  color: color.secondText,
+                                  color: theme.color.secondText,
                                   size: 20.sp,
                                 ),
-                                onPressed: () => color.changeTheme(),
+                                onPressed: () =>
+                                    theme.setTheme(theme: t.Themes.next),
                               ),
                             ],
                           )
@@ -153,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                                                     productController),
                                             transition: Transition.downToUp);
                                       },
-                                      background: color.background,
+                                      background: theme.color.background,
                                       isDotted: true,
                                       child: Center(
                                         child: Column(
@@ -163,13 +165,13 @@ class HomeScreen extends StatelessWidget {
                                                 CupertinoIcons
                                                     .rectangle_on_rectangle_angled,
                                                 size: 25.sp,
-                                                color: color.bigButton),
+                                                color: theme.color.bigButton),
                                             SizedBox(height: 8.sp),
                                             Text(
                                               language.homeButton1,
                                               style: TextStyle(
                                                   fontSize: 9.sp,
-                                                  color: color.bigButton),
+                                                  color: theme.color.bigButton),
                                             )
                                           ],
                                         ),
@@ -215,7 +217,7 @@ class HomeScreen extends StatelessWidget {
                                                               .cupertino);
                                                     },
                                                     background:
-                                                        color.flatButton,
+                                                        theme.color.flatButton,
                                                     isDotted: false,
                                                     child: Padding(
                                                       padding: EdgeInsets.only(
@@ -238,7 +240,7 @@ class HomeScreen extends StatelessWidget {
                                                             child: Icon(
                                                               Icons
                                                                   .navigate_next,
-                                                              color: color
+                                                              color: theme.color
                                                                   .subArrow,
                                                               size: 20.sp,
                                                             ),
@@ -280,7 +282,7 @@ class HomeScreen extends StatelessWidget {
                       FadeInUp(
                         duration: Duration(milliseconds: 500),
                         child: LineButtonWidget(
-                          background: color.blue,
+                          background: theme.color.blue,
                           function: () {
                             Get.to(
                               () => CalculatingScreen(
@@ -292,7 +294,7 @@ class HomeScreen extends StatelessWidget {
                           },
                           leading: Icon(
                             CupertinoIcons.collections,
-                            color: color.white,
+                            color: theme.color.white,
                             size: 14.sp,
                           ),
                           title: SizedBox(
@@ -302,7 +304,7 @@ class HomeScreen extends StatelessWidget {
                               child: Text(
                                 language.homeButton2,
                                 style: TextStyle(
-                                  color: color.white,
+                                  color: theme.color.white,
                                   fontSize: 12.sp,
                                 ),
                               ),
@@ -310,7 +312,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           trailing: Icon(
                             Icons.navigate_next,
-                            color: color.mainArrow,
+                            color: theme.color.mainArrow,
                             size: 20.sp,
                           ),
                         ),
@@ -318,7 +320,7 @@ class HomeScreen extends StatelessWidget {
                       FadeInUp(
                         duration: Duration(milliseconds: 600),
                         child: LineButtonWidget(
-                          background: color.flatButton,
+                          background: theme.color.flatButton,
                           function: () {
                             Get.to(
                               () => ProductsViewScreen(
@@ -328,7 +330,7 @@ class HomeScreen extends StatelessWidget {
                           },
                           leading: Icon(
                             CupertinoIcons.tray_full,
-                            color: color.mainText,
+                            color: theme.color.mainText,
                             size: 14.sp,
                           ),
                           title: SizedBox(
@@ -338,7 +340,7 @@ class HomeScreen extends StatelessWidget {
                               child: Text(
                                 language.homeButton3,
                                 style: TextStyle(
-                                  color: color.mainText,
+                                  color: theme.color.mainText,
                                   fontSize: 12.sp,
                                 ),
                               ),
@@ -346,7 +348,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           trailing: Icon(
                             Icons.navigate_next,
-                            color: color.subArrow,
+                            color: theme.color.subArrow,
                             size: 20.sp,
                           ),
                         ),
@@ -354,7 +356,7 @@ class HomeScreen extends StatelessWidget {
                       FadeInUp(
                         duration: Duration(milliseconds: 700),
                         child: LineButtonWidget(
-                          background: color.flatButton,
+                          background: theme.color.flatButton,
                           function: () {
                             Get.to(
                               () => DataViewScreen(
@@ -365,7 +367,7 @@ class HomeScreen extends StatelessWidget {
                           },
                           leading: Icon(
                             CupertinoIcons.chart_pie,
-                            color: color.mainText,
+                            color: theme.color.mainText,
                             size: 14.sp,
                           ),
                           title: SizedBox(
@@ -375,7 +377,7 @@ class HomeScreen extends StatelessWidget {
                               child: Text(
                                 language.homeButton4,
                                 style: TextStyle(
-                                  color: color.mainText,
+                                  color: theme.color.mainText,
                                   fontSize: 12.sp,
                                 ),
                               ),
@@ -383,7 +385,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           trailing: Icon(
                             Icons.navigate_next,
-                            color: color.subArrow,
+                            color: theme.color.subArrow,
                             size: 20.sp,
                           ),
                         ),
@@ -391,7 +393,7 @@ class HomeScreen extends StatelessWidget {
                       FadeInUp(
                         duration: Duration(milliseconds: 800),
                         child: LineButtonWidget(
-                          background: color.flatButton,
+                          background: theme.color.flatButton,
                           function: () {
                             Get.to(
                               () => LanguageScreen(),
@@ -400,7 +402,7 @@ class HomeScreen extends StatelessWidget {
                           },
                           leading: Icon(
                             CupertinoIcons.globe,
-                            color: color.mainText,
+                            color: theme.color.mainText,
                             size: 14.sp,
                           ),
                           title: SizedBox(
@@ -410,7 +412,7 @@ class HomeScreen extends StatelessWidget {
                               child: Text(
                                 language.homeButton5,
                                 style: TextStyle(
-                                  color: color.mainText,
+                                  color: theme.color.mainText,
                                   fontSize: 12.sp,
                                 ),
                               ),
@@ -418,7 +420,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           trailing: Icon(
                             Icons.navigate_next,
-                            color: color.subArrow,
+                            color: theme.color.subArrow,
                             size: 20.sp,
                           ),
                         ),

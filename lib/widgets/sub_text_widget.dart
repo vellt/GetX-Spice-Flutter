@@ -12,7 +12,7 @@ class SubTextWidget extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Text(
         text,
-        style: TextStyle(fontSize: 11.sp, color: color.subText),
+        style: TextStyle(fontSize: 11.sp, color: theme.color.subText),
       ),
     );
   }

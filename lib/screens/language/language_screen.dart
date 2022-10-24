@@ -18,19 +18,19 @@ class LanguageScreen extends StatelessWidget {
         init: language,
         builder: (controller) {
           return Scaffold(
-            backgroundColor: color.background,
+            backgroundColor: theme.color.background,
             appBar: AppBar(
               shadowColor: Colors.transparent.withOpacity(0.1),
               elevation: 0,
               surfaceTintColor: Colors.transparent,
-              backgroundColor: color.background,
+              backgroundColor: theme.color.background,
               automaticallyImplyLeading: false,
               leading: IconButton(
                 tooltip: controller.otherBack,
                 icon: Icon(
                   Icons.arrow_back,
                   size: 20.sp,
-                  color: color.mainText,
+                  color: theme.color.mainText,
                 ),
                 onPressed: () => Get.back(),
               ),
@@ -73,8 +73,8 @@ class LanguageScreen extends StatelessWidget {
                       duration: Duration(milliseconds: 600),
                       child: LineButtonWidget(
                         background: (controller.isHungarian)
-                            ? color.blue
-                            : color.flatButton,
+                            ? theme.color.blue
+                            : theme.color.flatButton,
                         function: () {
                           controller.changeLanguage(isHungarian: true);
                         },
@@ -85,8 +85,8 @@ class LanguageScreen extends StatelessWidget {
                                 ? CupertinoIcons.check_mark_circled
                                 : CupertinoIcons.circle,
                             color: (controller.isHungarian)
-                                ? color.white
-                                : color.mainText,
+                                ? theme.color.white
+                                : theme.color.mainText,
                             size: 14.sp,
                           ),
                         ),
@@ -98,8 +98,8 @@ class LanguageScreen extends StatelessWidget {
                               controller.languageButton1,
                               style: TextStyle(
                                 color: (controller.isHungarian)
-                                    ? color.white
-                                    : color.mainText,
+                                    ? theme.color.white
+                                    : theme.color.mainText,
                                 fontSize: 12.sp,
                               ),
                             ),
@@ -111,8 +111,8 @@ class LanguageScreen extends StatelessWidget {
                       duration: Duration(milliseconds: 700),
                       child: LineButtonWidget(
                         background: !(controller.isHungarian)
-                            ? color.blue
-                            : color.flatButton,
+                            ? theme.color.blue
+                            : theme.color.flatButton,
                         function: () {
                           controller.changeLanguage(isHungarian: false);
                         },
@@ -123,8 +123,8 @@ class LanguageScreen extends StatelessWidget {
                                 ? CupertinoIcons.check_mark_circled
                                 : CupertinoIcons.circle,
                             color: !(controller.isHungarian)
-                                ? color.white
-                                : color.mainText,
+                                ? theme.color.white
+                                : theme.color.mainText,
                             size: 14.sp,
                           ),
                         ),
@@ -136,8 +136,8 @@ class LanguageScreen extends StatelessWidget {
                               controller.languageButton2,
                               style: TextStyle(
                                 color: !(controller.isHungarian)
-                                    ? color.white
-                                    : color.mainText,
+                                    ? theme.color.white
+                                    : theme.color.mainText,
                                 fontSize: 12.sp,
                               ),
                             ),

@@ -25,19 +25,19 @@ class ProductsViewScreen extends StatelessWidget {
         init: language,
         builder: (controller2) {
           return Scaffold(
-            backgroundColor: color.background,
+            backgroundColor: theme.color.background,
             appBar: AppBar(
               shadowColor: Colors.transparent.withOpacity(0.1),
               elevation: 0,
               surfaceTintColor: Colors.transparent,
-              backgroundColor: color.background,
+              backgroundColor: theme.color.background,
               automaticallyImplyLeading: false,
               leading: IconButton(
                 tooltip: controller2.otherBack,
                 icon: Icon(
                   Icons.arrow_back,
                   size: 20.sp,
-                  color: color.mainText,
+                  color: theme.color.mainText,
                 ),
                 onPressed: () => Get.back(),
               ),
@@ -79,7 +79,7 @@ class ProductsViewScreen extends StatelessWidget {
                     FadeInUp(
                       duration: Duration(milliseconds: 500),
                       child: LineButtonWidget(
-                        background: color.blue,
+                        background: theme.color.blue,
                         function: () {
                           Get.to(
                               () => ProductsAddScreen(
@@ -89,7 +89,7 @@ class ProductsViewScreen extends StatelessWidget {
                         },
                         leading: Icon(
                           CupertinoIcons.add,
-                          color: color.white,
+                          color: theme.color.white,
                           size: 14.sp,
                         ),
                         title: SizedBox(
@@ -99,7 +99,7 @@ class ProductsViewScreen extends StatelessWidget {
                             child: Text(
                               controller2.productViewButton1,
                               style: TextStyle(
-                                color: color.white,
+                                color: theme.color.white,
                                 fontSize: 12.sp,
                               ),
                             ),
@@ -107,7 +107,7 @@ class ProductsViewScreen extends StatelessWidget {
                         ),
                         trailing: Icon(
                           Icons.navigate_next,
-                          color: color.mainArrow,
+                          color: theme.color.mainArrow,
                           size: 20.sp,
                         ),
                       ),
@@ -137,7 +137,7 @@ class ProductsViewScreen extends StatelessWidget {
                                 child: Text(
                               controller2.noProduct,
                               style: TextStyle(
-                                  color: color.subText, fontSize: 10.sp),
+                                  color: theme.color.subText, fontSize: 10.sp),
                             )),
                           ),
                         );
@@ -166,15 +166,15 @@ class ProductsViewScreen extends StatelessWidget {
                                       alignment: Alignment.centerLeft,
                                       child: Text(product.name,
                                           style: TextStyle(
-                                            color: color.secondText,
+                                            color: theme.color.secondText,
                                             fontSize: 12.sp,
                                           )),
                                     ),
                                   ),
-                                  background: color.flatButton,
+                                  background: theme.color.flatButton,
                                   trailing: Icon(
                                     Icons.navigate_next,
-                                    color: color.subArrow,
+                                    color: theme.color.subArrow,
                                     size: 20.sp,
                                   ),
                                 ),

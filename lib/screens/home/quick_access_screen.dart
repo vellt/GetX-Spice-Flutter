@@ -22,19 +22,19 @@ class QuickAccessScreen extends StatelessWidget {
         init: language,
         builder: (controller) {
           return Scaffold(
-            backgroundColor: color.background,
+            backgroundColor: theme.color.background,
             appBar: AppBar(
               shadowColor: Colors.transparent.withOpacity(0.1),
               elevation: 0,
               surfaceTintColor: Colors.transparent,
-              backgroundColor: color.background,
+              backgroundColor: theme.color.background,
               automaticallyImplyLeading: false,
               leading: IconButton(
                 tooltip: controller.otherBack,
                 icon: Icon(
                   Icons.arrow_back,
                   size: 20.sp,
-                  color: color.mainText,
+                  color: theme.color.mainText,
                 ),
                 onPressed: () => Get.back(),
               ),
@@ -80,7 +80,7 @@ class QuickAccessScreen extends StatelessWidget {
                               child: Text(
                             controller.noProduct,
                             style: TextStyle(
-                                color: color.subText, fontSize: 10.sp),
+                                color: theme.color.subText, fontSize: 10.sp),
                           )),
                         );
                       } else {
@@ -108,8 +108,8 @@ class QuickAccessScreen extends StatelessWidget {
                                         ? CupertinoIcons.check_mark_circled
                                         : CupertinoIcons.circle,
                                     color: (product.isFavorite)
-                                        ? color.white
-                                        : color.mainText,
+                                        ? theme.color.white
+                                        : theme.color.mainText,
                                     size: 14.sp,
                                   ),
                                   title: SizedBox(
@@ -120,16 +120,16 @@ class QuickAccessScreen extends StatelessWidget {
                                         product.name,
                                         style: TextStyle(
                                           color: (product.isFavorite)
-                                              ? color.white
-                                              : color.secondText,
+                                              ? theme.color.white
+                                              : theme.color.secondText,
                                           fontSize: 12.sp,
                                         ),
                                       ),
                                     ),
                                   ),
                                   background: (product.isFavorite)
-                                      ? color.blue
-                                      : color.flatButton,
+                                      ? theme.color.blue
+                                      : theme.color.flatButton,
                                 ),
                               );
                             });

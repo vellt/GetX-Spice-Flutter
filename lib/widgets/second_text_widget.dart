@@ -14,7 +14,7 @@ class SecondTextWidget extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Text(
           text,
-          style: TextStyle(fontSize: 13.sp, color: color.secondText),
+          style: TextStyle(fontSize: 13.sp, color: theme.color.secondText),
         ),
       ),
     );

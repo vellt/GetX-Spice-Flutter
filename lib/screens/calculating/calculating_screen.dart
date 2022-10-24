@@ -19,19 +19,19 @@ class CalculatingScreen extends StatelessWidget {
           init: language,
           builder: (controller) {
             return Scaffold(
-              backgroundColor: color.background,
+              backgroundColor: theme.color.background,
               appBar: AppBar(
                 shadowColor: Colors.transparent.withOpacity(0.1),
                 elevation: 0,
                 surfaceTintColor: Colors.transparent,
-                backgroundColor: color.background,
+                backgroundColor: theme.color.background,
                 automaticallyImplyLeading: false,
                 leading: IconButton(
                   tooltip: controller.otherBack,
                   icon: Icon(
                     Icons.arrow_back,
                     size: 20.sp,
-                    color: color.mainText,
+                    color: theme.color.mainText,
                   ),
                   onPressed: () => Get.back(),
                 ),
@@ -39,11 +39,12 @@ class CalculatingScreen extends StatelessWidget {
               body: FadeInUp(
                 duration: Duration(milliseconds: 500),
                 child: Container(
-                  color: color.background,
+                  color: theme.color.background,
                   child: Center(
                     child: Text(
                       controller.noProduct,
-                      style: TextStyle(color: color.subText, fontSize: 10.sp),
+                      style: TextStyle(
+                          color: theme.color.subText, fontSize: 10.sp),
                     ),
                   ),
                 ),
@@ -58,19 +59,19 @@ class CalculatingScreen extends StatelessWidget {
               init: language,
               builder: (controller) {
                 return Scaffold(
-                  backgroundColor: color.background,
+                  backgroundColor: theme.color.background,
                   appBar: AppBar(
                     shadowColor: Colors.transparent.withOpacity(0.1),
                     elevation: 0,
                     surfaceTintColor: Colors.transparent,
-                    backgroundColor: color.background,
+                    backgroundColor: theme.color.background,
                     automaticallyImplyLeading: false,
                     leading: IconButton(
                       tooltip: controller.otherBack,
                       icon: Icon(
                         Icons.arrow_back,
                         size: 20.sp,
-                        color: color.mainText,
+                        color: theme.color.mainText,
                       ),
                       onPressed: () => Get.back(),
                     ),
@@ -93,10 +94,10 @@ class CalculatingScreen extends StatelessWidget {
                               physics: BouncingScrollPhysics(),
                               labelStyle: TextStyle(
                                   fontSize: 20.sp, fontWeight: FontWeight.w700),
-                              labelColor: color.mainText,
+                              labelColor: theme.color.mainText,
                               unselectedLabelStyle: TextStyle(
                                   fontSize: 20.sp, fontWeight: FontWeight.w600),
-                              unselectedLabelColor: color.subText,
+                              unselectedLabelColor: theme.color.subText,
                               overlayColor:
                                   MaterialStateProperty.resolveWith((states) {
                                 return Colors.transparent;

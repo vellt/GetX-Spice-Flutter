@@ -12,7 +12,7 @@ class LineWidget extends StatelessWidget {
     if (text == null)
       return Divider(
         thickness: 1.sp,
-        color: color.flatButton,
+        color: theme.color.flatButton,
       );
     else
       return Row(
@@ -21,19 +21,19 @@ class LineWidget extends StatelessWidget {
           Flexible(
             child: Divider(
               thickness: 1.sp,
-              color: color.line,
+              color: theme.color.line,
             ),
           ),
           SizedBox(width: 5.sp),
           Text(
             "vagy",
-            style: TextStyle(fontSize: 11.sp, color: color.subText),
+            style: TextStyle(fontSize: 11.sp, color: theme.color.subText),
           ),
           SizedBox(width: 5.sp),
           Flexible(
             child: Divider(
               thickness: 1.sp,
-              color: color.line,
+              color: theme.color.line,
             ),
           ),
         ],

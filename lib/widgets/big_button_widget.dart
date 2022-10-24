@@ -34,7 +34,7 @@ class BigButtonWidget extends StatelessWidget {
         borderType: BorderType.RRect,
         radius: Radius.circular(15.sp),
         dashPattern: [5.sp, 3.sp],
-        color: (isDotted) ? color.bigButton : Colors.transparent,
+        color: (isDotted) ? theme.color.bigButton : Colors.transparent,
         strokeWidth: 2,
         child: Container(
           decoration: (isDotted)

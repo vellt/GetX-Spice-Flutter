@@ -30,19 +30,19 @@ class SpiceEditScreen extends StatelessWidget {
         init: language,
         builder: (controllerLanguage) {
           return Scaffold(
-            backgroundColor: color.background,
+            backgroundColor: theme.color.background,
             appBar: AppBar(
               shadowColor: Colors.transparent.withOpacity(0.1),
               elevation: 0,
               surfaceTintColor: Colors.transparent,
-              backgroundColor: color.background,
+              backgroundColor: theme.color.background,
               automaticallyImplyLeading: false,
               leading: IconButton(
                 tooltip: controllerLanguage.otherBack,
                 icon: Icon(
                   Icons.arrow_back,
                   size: 20.sp,
-                  color: color.mainText,
+                  color: theme.color.mainText,
                 ),
                 onPressed: () {
                   Get.back();
@@ -56,7 +56,7 @@ class SpiceEditScreen extends StatelessWidget {
                     icon: Icon(
                       CupertinoIcons.delete,
                       size: 16.sp,
-                      color: color.mainText,
+                      color: theme.color.mainText,
                     ),
                     onPressed: () {
                       Get.dialog(
@@ -163,9 +163,9 @@ class SpiceEditScreen extends StatelessWidget {
               },
               child: Icon(
                 Icons.check,
-                color: color.white,
+                color: theme.color.white,
               ),
-              backgroundColor: color.blue,
+              backgroundColor: theme.color.blue,
             ),
           );
         });

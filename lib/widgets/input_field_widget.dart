@@ -28,7 +28,7 @@ class InputFieldWidget extends StatelessWidget {
       onChanged: onChanged,
       controller: controller,
       autofocus: autofocus,
-      cursorColor: color.mainText,
+      cursorColor: theme.color.mainText,
       style: TextStyle(fontSize: 16.sp),
       textAlignVertical: TextAlignVertical.bottom,
       keyboardType: textInputType,
@@ -46,16 +46,16 @@ class InputFieldWidget extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.only(
             left: 15.sp, right: 10.sp, top: 18.sp, bottom: 12.sp),
-        labelStyle: TextStyle(color: color.subText),
+        labelStyle: TextStyle(color: theme.color.subText),
         labelText: labelText,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: color.subArrow, width: 1.5.sp),
+          borderSide: BorderSide(color: theme.color.subArrow, width: 1.5.sp),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(
-              color: color.subArrow,
+              color: theme.color.subArrow,
               width: 1.5.sp), //todo: mas legyen a szine mikor nem aktiv
         ),
         suffixIcon: (secondLabelText == null)
@@ -66,7 +66,8 @@ class InputFieldWidget extends StatelessWidget {
                 child: Center(
                   child: Text(
                     "Kg",
-                    style: TextStyle(color: color.subText, fontSize: 12.sp),
+                    style:
+                        TextStyle(color: theme.color.subText, fontSize: 12.sp),
                   ),
                 ),
               ),

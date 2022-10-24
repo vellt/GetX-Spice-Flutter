@@ -22,19 +22,19 @@ class DataViewScreen extends StatelessWidget {
         init: language,
         builder: (controllerLanguage) {
           return Scaffold(
-            backgroundColor: color.background,
+            backgroundColor: theme.color.background,
             appBar: AppBar(
               shadowColor: Colors.transparent.withOpacity(0.1),
               elevation: 0,
               surfaceTintColor: Colors.transparent,
-              backgroundColor: color.background,
+              backgroundColor: theme.color.background,
               automaticallyImplyLeading: false,
               leading: IconButton(
                 tooltip: controllerLanguage.otherBack,
                 icon: Icon(
                   Icons.arrow_back,
                   size: 20.sp,
-                  color: color.mainText,
+                  color: theme.color.mainText,
                 ),
                 onPressed: () => Get.back(),
               ),
@@ -83,7 +83,7 @@ class DataViewScreen extends StatelessWidget {
                     FadeInUp(
                       duration: Duration(milliseconds: 500),
                       child: LineButtonWidget(
-                        background: color.flatButton,
+                        background: theme.color.flatButton,
                         function: () {
                           controller.restore(
                               context, controllerLanguage.snackBarRestore);
@@ -92,7 +92,7 @@ class DataViewScreen extends StatelessWidget {
                           padding: EdgeInsets.only(left: 4.sp),
                           child: Icon(
                             CupertinoIcons.folder,
-                            color: color.mainText,
+                            color: theme.color.mainText,
                             size: 14.sp,
                           ),
                         ),
@@ -103,7 +103,7 @@ class DataViewScreen extends StatelessWidget {
                             child: Text(
                               controllerLanguage.dataButton1,
                               style: TextStyle(
-                                color: color.mainText,
+                                color: theme.color.mainText,
                                 fontSize: 12.sp,
                               ),
                             ),
@@ -133,7 +133,7 @@ class DataViewScreen extends StatelessWidget {
                     FadeInUp(
                       duration: Duration(milliseconds: 600),
                       child: LineButtonWidget(
-                        background: color.blue,
+                        background: theme.color.blue,
                         function: () {
                           controller.makingBackup(
                               context,
@@ -144,7 +144,7 @@ class DataViewScreen extends StatelessWidget {
                           padding: EdgeInsets.only(left: 4.sp),
                           child: Icon(
                             CupertinoIcons.tray_arrow_down,
-                            color: color.white,
+                            color: theme.color.white,
                             size: 14.sp,
                           ),
                         ),
@@ -155,7 +155,7 @@ class DataViewScreen extends StatelessWidget {
                             child: Text(
                               controllerLanguage.dataButton2,
                               style: TextStyle(
-                                color: color.white,
+                                color: theme.color.white,
                                 fontSize: 12.sp,
                               ),
                             ),
@@ -188,7 +188,7 @@ class DataViewScreen extends StatelessWidget {
                     FadeInUp(
                       duration: Duration(milliseconds: 700),
                       child: LineButtonWidget(
-                        background: color.flatButton,
+                        background: theme.color.flatButton,
                         function: () {
                           Get.dialog(
                             GetDialogWidget(
@@ -215,13 +215,13 @@ class DataViewScreen extends StatelessWidget {
                                     height: 14.sp,
                                     width: 14.sp,
                                     child: CircularProgressIndicator(
-                                      color: color.mainText,
+                                      color: theme.color.mainText,
                                       strokeWidth: 2.sp,
                                     ),
                                   )
                                 : Icon(
                                     CupertinoIcons.delete,
-                                    color: color.mainText,
+                                    color: theme.color.mainText,
                                     size: 14.sp,
                                   ),
                           );
@@ -233,7 +233,7 @@ class DataViewScreen extends StatelessWidget {
                             child: Text(
                               controllerLanguage.dataButton3,
                               style: TextStyle(
-                                color: color.mainText,
+                                color: theme.color.mainText,
                                 fontSize: 12.sp,
                               ),
                             ),
